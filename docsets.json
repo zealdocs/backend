@@ -1,0 +1,899 @@
+{
+    "AWS_JavaScript": {
+        "title": "AWS JavaScript",
+        "iconName": "awsjs"
+    },
+    "ActionScript": {
+        "title": "ActionScript",
+        "iconName": "actionscript",
+        "extra": {
+            "indexFilePath": "package-detail.html"
+        }
+    },
+    "Akka": {
+        "title": "Akka",
+        "iconName": "akka",
+        "extra": {
+            "indexFilePath": "scala/package.html"
+        }
+    },
+    "Android": {
+        "title": "Android",
+        "iconName": "android",
+        "extra": {
+            "indexFilePath": "docs/reference/packages.html"
+        }
+    },
+    "Angular": {
+        "title": "Angular",
+        "iconName": "angular"
+    },
+    "AngularJS": {
+        "title": "AngularJS",
+        "iconName": "angularjs"
+    },
+    "Ansible": {
+        "title": "Ansible",
+        "iconName": "ansible"
+    },
+    "Apache_HTTP_Server": {
+        "title": "Apache HTTP Server",
+        "iconName": "apache"
+    },
+    "Appcelerator_Titanium": {
+        "title": "Appcelerator Titanium",
+        "iconName": "titanium"
+    },
+    "AppleScript": {
+        "title": "AppleScript",
+        "iconName": "applescript"
+    },
+    "Arduino": {
+        "title": "Arduino",
+        "iconName": "arduino"
+    },
+    "BackboneJS": {
+        "title": "BackboneJS",
+        "iconName": "backbone"
+    },
+    "Bash": {
+        "title": "Bash",
+        "iconName": "bash"
+    },
+    "Boost": {
+        "title": "Boost",
+        "iconName": "boost"
+    },
+    "Bootstrap_2": {
+        "title": "Bootstrap 2",
+        "iconName": "bootstrap"
+    },
+    "Bootstrap_3": {
+        "title": "Bootstrap 3",
+        "iconName": "bootstrap"
+    },
+    "Bootstrap_4": {
+        "title": "Bootstrap 4",
+        "iconName": "bootstrap"
+    },
+    "Bourbon": {
+        "title": "Bourbon",
+        "iconName": "bourbon"
+    },
+    "C": {
+        "title": "C",
+        "iconName": "c",
+        "extra": {
+            "indexFilePath": "output/en/c.html"
+        }
+    },
+    "C++": {
+        "title": "C++",
+        "iconName": "cpp",
+        "extra": {
+            "indexFilePath": "output/en/cpp.html"
+        }
+    },
+    "CMake": {
+        "title": "CMake",
+        "iconName": "cmake"
+    },
+    "CSS": {
+        "title": "CSS",
+        "iconName": "css"
+    },
+    "CakePHP": {
+        "title": "CakePHP",
+        "iconName": "cakephp"
+    },
+    "Cappuccino": {
+        "title": "Cappuccino",
+        "iconName": "cappuccino"
+    },
+    "Chai": {
+        "title": "Chai",
+        "iconName": "chai"
+    },
+    "Chef": {
+        "title": "Chef",
+        "iconName": "chef"
+    },
+    "Clojure": {
+        "title": "Clojure",
+        "iconName": "clojure"
+    },
+    "Cocos2D": {
+        "title": "Cocos2D",
+        "iconName": "cocos2d"
+    },
+    "Cocos2D-X": {
+        "title": "Cocos2D-X",
+        "iconName": "cocos2dx"
+    },
+    "Cocos3D": {
+        "title": "Cocos3D",
+        "iconName": "cocos2d",
+        "extra": {
+            "keywords": [
+                "cocos3d"
+            ]
+        }
+    },
+    "CodeIgniter": {
+        "title": "CodeIgniter",
+        "iconName": "codeigniter"
+    },
+    "CoffeeScript": {
+        "title": "CoffeeScript",
+        "iconName": "coffee"
+    },
+    "ColdFusion": {
+        "title": "ColdFusion",
+        "iconName": "cf"
+    },
+    "Common_Lisp": {
+        "title": "Common Lisp",
+        "iconName": "lisp",
+        "extra": {
+            "indexFilePath": "HyperSpec/HyperSpec/Front/index.htm"
+        }
+    },
+    "Compass": {
+        "title": "Compass",
+        "iconName": "compass"
+    },
+    "Cordova": {
+        "title": "Cordova",
+        "iconName": "cordova"
+    },
+    "Corona": {
+        "title": "Corona",
+        "iconName": "corona"
+    },
+    "CouchDB": {
+        "title": "CouchDB",
+        "iconName": "couchdb"
+    },
+    "Craft": {
+        "title": "Craft",
+        "iconName": "craft"
+    },
+    "D3JS": {
+        "title": "D3JS",
+        "iconName": "d3"
+    },
+    "DOM": {
+        "title": "DOM",
+        "iconName": "dom"
+    },
+    "Dart": {
+        "title": "Dart",
+        "iconName": "dartlang"
+    },
+    "Django": {
+        "title": "Django",
+        "iconName": "django"
+    },
+    "Docker": {
+        "title": "Docker",
+        "iconName": "docker"
+    },
+    "Doctrine_ORM": {
+        "title": "Doctrine",
+        "iconName": "doctrine"
+    },
+    "Dojo": {
+        "title": "Dojo",
+        "iconName": "dojo"
+    },
+    "Drupal_7": {
+        "title": "Drupal 7",
+        "iconName": "drupal"
+    },
+    "Drupal_8": {
+        "title": "Drupal 8",
+        "iconName": "drupal"
+    },
+    "ElasticSearch": {
+        "title": "ElasticSearch",
+        "iconName": "elasticsearch"
+    },
+    "Elixir": {
+        "title": "Elixir",
+        "iconName": "elixir"
+    },
+    "Emacs_Lisp": {
+        "title": "Emacs Lisp",
+        "iconName": "elisp"
+    },
+    "EmberJS": {
+        "title": "EmberJS",
+        "iconName": "ember"
+    },
+    "Emmet": {
+        "title": "Emmet",
+        "iconName": "emmet"
+    },
+    "Erlang": {
+        "title": "Erlang",
+        "iconName": "erlang"
+    },
+    "Express": {
+        "title": "Express",
+        "iconName": "express"
+    },
+    "ExpressionEngine": {
+        "title": "ExpressionEngine",
+        "iconName": "ee"
+    },
+    "ExtJS": {
+        "title": "ExtJS",
+        "iconName": "extjs"
+    },
+    "Flask": {
+        "title": "Flask",
+        "iconName": "flask"
+    },
+    "Font_Awesome": {
+        "title": "Font Awesome",
+        "iconName": "awesome"
+    },
+    "Foundation": {
+        "title": "Foundation",
+        "iconName": "foundation"
+    },
+    "GLib": {
+        "title": "GLib",
+        "iconName": "glib"
+    },
+    "Go": {
+        "title": "Go",
+        "iconName": "go"
+    },
+    "Gradle_DSL": {
+        "title": "Gradle DSL",
+        "iconName": "gradle"
+    },
+    "Gradle_Java_API": {
+        "title": "Gradle Java API",
+        "iconName": "gradle"
+    },
+    "Gradle_User_Guide": {
+        "title": "Gradle User Guide",
+        "iconName": "gradle"
+    },
+    "Grails": {
+        "title": "Grails",
+        "iconName": "grails"
+    },
+    "Groovy": {
+        "title": "Groovy",
+        "iconName": "groovy"
+    },
+    "Groovy_JDK": {
+        "title": "Groovy JDK",
+        "iconName": "groovy"
+    },
+    "Grunt": {
+        "title": "Grunt",
+        "iconName": "grunt"
+    },
+    "Gulp": {
+        "title": "Gulp",
+        "iconName": "gulp"
+    },
+    "Handlebars": {
+        "title": "Handlebars",
+        "iconName": "handlebars"
+    },
+    "HTML": {
+        "title": "HTML",
+        "iconName": "html"
+    },
+    "Haml": {
+        "title": "Haml",
+        "iconName": "haml"
+    },
+    "Haskell": {
+        "title": "Haskell",
+        "iconName": "haskell"
+    },
+    "Ionic": {
+        "title": "Ionic",
+        "iconName": "ionic"
+    },
+    "Jasmine": {
+        "title": "Jasmine",
+        "iconName": "jasmine"
+    },
+    "JavaFX": {
+        "title": "JavaFX",
+        "iconName": "javafx"
+    },
+    "JavaScript": {
+        "title": "JavaScript",
+        "iconName": "javascript"
+    },
+    "Java_EE6": {
+        "title": "Java EE6",
+        "iconName": "jee6"
+    },
+    "Java_EE7": {
+        "title": "Java EE7",
+        "iconName": "jee7"
+    },
+    "Java_EE8": {
+        "title": "Java EE8",
+        "iconName": "jee8"
+    },
+    "Java_SE6": {
+        "title": "Java SE6",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java6"
+            ]
+        }
+    },
+    "Java_SE7": {
+        "title": "Java SE7",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java7"
+            ]
+        }
+    },
+    "Java_SE8": {
+        "title": "Java SE8",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java8"
+            ]
+        }
+    },
+    "Java_SE9": {
+        "title": "Java SE9",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java9"
+            ]
+        }
+    },
+    "Java_SE10": {
+        "title": "Java SE10",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java10"
+            ]
+        }
+    },
+    "Java_SE11": {
+        "title": "Java SE11",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java11"
+            ]
+        }
+    },
+    "Jekyll": {
+        "title": "Jekyll",
+        "iconName": "jekyll"
+    },
+    "Jinja": {
+        "title": "Jinja",
+        "iconName": "jinja"
+    },
+    "Joomla": {
+        "title": "Joomla",
+        "iconName": "joomla"
+    },
+    "Julia": {
+        "title": "Julia",
+        "iconName": "julia"
+    },
+    "KnockoutJS": {
+        "title": "KnockoutJS",
+        "iconName": "knockout"
+    },
+    "Kobold2D": {
+        "title": "Kobold2D",
+        "iconName": "kobold2d"
+    },
+    "LaTeX": {
+        "title": "LaTeX",
+        "iconName": "latex"
+    },
+    "Laravel": {
+        "title": "Laravel",
+        "iconName": "laravel"
+    },
+    "Less": {
+        "title": "Less",
+        "iconName": "less"
+    },
+    "Lo-Dash": {
+        "title": "Lo-Dash",
+        "iconName": "lodash"
+    },
+    "Lua_5.1": {
+        "title": "Lua 5.1",
+        "iconName": "lua",
+        "extra": {
+            "indexFilePath": "www.lua.org/manual/5.1/index.html"
+        }
+    },
+    "Lua_5.2": {
+        "title": "Lua 5.2",
+        "iconName": "lua",
+        "extra": {
+            "indexFilePath": "www.lua.org/manual/5.2/index.html"
+        }
+    },
+    "Lua_5.3": {
+        "title": "Lua 5.3",
+        "iconName": "lua",
+        "extra": {
+            "indexFilePath": "www.lua.org/manual/5.3/index.html"
+        }
+    },
+    "MarionetteJS": {
+        "title": "MarionetteJS",
+        "iconName": "marionette"
+    },
+    "Markdown": {
+        "title": "Markdown",
+        "iconName": "markdown"
+    },
+    "Matplotlib": {
+        "title": "MatPlotLib",
+        "iconName": "matplotlib"
+    },
+    "Meteor": {
+        "title": "Meteor",
+        "iconName": "meteor"
+    },
+    "Mocha": {
+        "title": "Mocha",
+        "iconName": "mocha"
+    },
+    "MomentJS": {
+        "title": "MomentJS",
+        "iconName": "moment"
+    },
+    "MongoDB": {
+        "title": "MongoDB",
+        "iconName": "mongodb"
+    },
+    "Mongoose": {
+        "title": "Mongoose",
+        "iconName": "mongoose"
+    },
+    "Mono": {
+        "title": "Mono",
+        "iconName": "mono"
+    },
+    "MooTools": {
+        "title": "MooTools",
+        "iconName": "moo"
+    },
+    "MySQL": {
+        "title": "MySQL",
+        "iconName": "mysql"
+    },
+    "NET_Framework": {
+        "title": "NET Framework",
+        "iconName": "net"
+    },
+    "Neat": {
+        "title": "Neat",
+        "iconName": "neat"
+    },
+    "Nginx": {
+        "title": "Nginx",
+        "iconName": "nginx"
+    },
+    "NodeJS": {
+        "title": "NodeJS",
+        "iconName": "nodejs"
+    },
+    "NumPy": {
+        "title": "NumPy",
+        "iconName": "numpy"
+    },
+    "OCaml": {
+        "title": "OCaml",
+        "iconName": "ocaml"
+    },
+    "OpenCV": {
+        "title": "OpenCV",
+        "iconName": "opencv"
+    },
+    "OpenGL_2": {
+        "title": "OpenGL 2",
+        "iconName": "gl2"
+    },
+    "OpenGL_3": {
+        "title": "OpenGL 3",
+        "iconName": "gl3"
+    },
+    "OpenGL_4": {
+        "title": "OpenGL 4",
+        "iconName": "gl4"
+    },
+    "PHP": {
+        "title": "PHP",
+        "iconName": "php"
+    },
+    "PHPUnit": {
+        "title": "PHPUnit",
+        "iconName": "phpunit"
+    },
+    "Pandas": {
+        "title": "Pandas",
+        "iconName": "pandas"
+    },
+    "Perl": {
+        "title": "Perl",
+        "iconName": "perl"
+    },
+    "Phalcon": {
+        "title": "Phalcon",
+        "iconName": "phalcon"
+    },
+    "PhoneGap": {
+        "title": "PhoneGap",
+        "iconName": "phonegap"
+    },
+    "Play_Java": {
+        "title": "Play Java",
+        "iconName": "playjava"
+    },
+    "Play_Scala": {
+        "title": "Play Scala",
+        "iconName": "playscala",
+        "extra": {
+            "indexFilePath": "scala/package.html"
+        }
+    },
+    "Polymer.dart": {
+        "title": "Polymer.dart",
+        "iconName": "polymerdart"
+    },
+    "PostgreSQL": {
+        "title": "PostgreSQL",
+        "iconName": "psql"
+    },
+    "Processing": {
+        "title": "Processing",
+        "iconName": "processing"
+    },
+    "PrototypeJS": {
+        "title": "PrototypeJS",
+        "iconName": "prototype",
+        "extra": {
+            "indexFilePath": "prototypejs/index.html"
+        }
+    },
+    "Pug": {
+        "title": "Pug",
+        "iconName": "pug"
+    },
+    "Puppet": {
+        "title": "Puppet",
+        "iconName": "puppet"
+    },
+    "Python_2": {
+        "title": "Python 2",
+        "iconName": "python",
+        "extra": {
+            "keywords": [
+                "python2",
+                "python"
+            ]
+        }
+    },
+    "Python_3": {
+        "title": "Python 3",
+        "iconName": "python",
+        "extra": {
+            "keywords": [
+                "python3",
+                "python"
+            ]
+        }
+    },
+    "Qt_4": {
+        "title": "Qt 4",
+        "iconName": "qt",
+        "extra": {
+            "indexFilePath": "html/index.html",
+            "keywords": [
+                "qt4",
+                "qt"
+            ]
+        }
+    },
+    "Qt_5": {
+        "title": "Qt 5",
+        "iconName": "qt",
+        "extra": {
+            "keywords": [
+                "qt5",
+                "qt"
+            ]
+        }
+    },
+    "R": {
+        "title": "R",
+        "iconName": "r"
+    },
+    "Racket": {
+        "title": "Racket",
+        "iconName": "racket"
+    },
+    "React": {
+        "title": "React",
+        "iconName": "react"
+    },
+    "Redis": {
+        "title": "Redis",
+        "iconName": "redis"
+    },
+    "RequireJS": {
+        "title": "RequireJS",
+        "iconName": "require"
+    },
+    "Ruby": {
+        "title": "Ruby",
+        "iconName": "ruby"
+    },
+    "Ruby_2": {
+        "title": "Ruby 2",
+        "iconName": "ruby"
+    },
+    "Ruby_on_Rails_3": {
+        "title": "Ruby on Rails 3",
+        "iconName": "rails",
+        "extra": {
+            "keywords": [
+                "ror3",
+                "ror"
+            ]
+        }
+    },
+    "Ruby_on_Rails_4": {
+        "title": "Ruby on Rails 4",
+        "iconName": "rails",
+        "extra": {
+            "keywords": [
+                "ror4",
+                "ror"
+            ]
+        }
+    },
+    "Ruby_on_Rails_5": {
+        "title": "Ruby on Rails 5",
+        "iconName": "rails",
+        "extra": {
+            "keywords": [
+                "ror5",
+                "ror"
+            ]
+        }
+    },
+    "RubyMotion": {
+        "title": "RubyMotion",
+        "iconName": "rubymotion"
+    },
+    "Rust": {
+        "title": "Rust",
+        "iconName": "rust"
+    },
+    "SQLAlchemy": {
+        "title": "SQLAlchemy",
+        "iconName": "sqlalchemy"
+    },
+    "SQLite": {
+        "title": "SQLite",
+        "iconName": "sqlite",
+        "extra": {
+            "indexFilePath": "sqlite/docs.html"
+        }
+    },
+    "SVG": {
+        "title": "SVG",
+        "iconName": "svg"
+    },
+    "SailsJS": {
+        "title": "SailsJS",
+        "iconName": "sails"
+    },
+    "SaltStack": {
+        "title": "SaltStack",
+        "iconName": "salt"
+    },
+    "Sass": {
+        "title": "Sass",
+        "iconName": "sass"
+    },
+    "Scala": {
+        "title": "Scala",
+        "iconName": "scala"
+    },
+    "SciPy": {
+        "title": "SciPy",
+        "iconName": "scipy"
+    },
+    "Semantic_UI": {
+        "title": "Semantic UI",
+        "iconName": "semantic"
+    },
+    "Sencha_Touch": {
+        "title": "Sencha Touch",
+        "iconName": "sencha"
+    },
+    "Sinon": {
+        "title": "Sinon",
+        "iconName": "sinon"
+    },
+    "Smarty": {
+        "title": "Smarty",
+        "iconName": "smarty"
+    },
+    "Sparrow": {
+        "title": "Sparrow",
+        "iconName": "sparrow"
+    },
+    "Spring_Framework": {
+        "title": "Spring Framework",
+        "iconName": "spring"
+    },
+    "Statamic": {
+        "title": "Statamic",
+        "iconName": "statamic"
+    },
+    "Stylus": {
+        "title": "Stylus",
+        "iconName": "stylus"
+    },
+    "Susy": {
+        "title": "Susy",
+        "iconName": "susy"
+    },
+    "Swift": {
+        "title": "Swift",
+        "iconName": "swift"
+    },
+    "Symfony": {
+        "title": "Symfony",
+        "iconName": "symfony"
+    },
+    "TYPO3": {
+        "title": "TYPO3",
+        "iconName": "typo3"
+    },
+    "Tcl": {
+        "title": "Tcl",
+        "iconName": "tcl"
+    },
+    "Tornado": {
+        "title": "Tornado",
+        "iconName": "tornado"
+    },
+    "Twig": {
+        "title": "Twig",
+        "iconName": "twig"
+    },
+    "Twisted": {
+        "title": "Twisted",
+        "iconName": "twisted"
+    },
+    "TypeScript": {
+        "title": "TypeScript",
+        "iconName": "typescript"
+    },
+    "UnderscoreJS": {
+        "title": "UnderscoreJS",
+        "iconName": "underscore"
+    },
+    "Unity_3D": {
+        "title": "Unity 3D",
+        "iconName": "unity3d"
+    },
+    "VMware_vSphere": {
+        "title": "VMware vSphere",
+        "iconName": "vsphere",
+        "extra": {
+            "indexFilePath": "docs/right-pane.html"
+        }
+    },
+    "Vagrant": {
+        "title": "Vagrant",
+        "iconName": "vagrant"
+    },
+    "Vim": {
+        "title": "Vim",
+        "iconName": "vim"
+    },
+    "VueJS": {
+        "title": "VueJS",
+        "iconName": "vue"
+    },
+    "WordPress": {
+        "title": "WordPress",
+        "iconName": "wordpress"
+    },
+    "XSLT": {
+        "title": "XSLT",
+        "iconName": "xslt"
+    },
+    "Xamarin": {
+        "title": "Xamarin",
+        "iconName": "xamarin"
+    },
+    "Xojo": {
+        "title": "Xojo",
+        "iconName": "xojo"
+    },
+    "YUI": {
+        "title": "YUI",
+        "iconName": "yui"
+    },
+    "Yii": {
+        "title": "Yii",
+        "iconName": "yii"
+    },
+    "Zend_Framework_1": {
+        "title": "Zend Framework 1",
+        "iconName": "zend"
+    },
+    "Zend_Framework_2": {
+        "title": "Zend Framework 2",
+        "iconName": "zend"
+    },
+    "Zend_Framework_3": {
+        "title": "Zend Framework 3",
+        "iconName": "zend"
+    },
+    "ZeptoJS": {
+        "title": "ZeptoJS",
+        "iconName": "zepto"
+    },
+    "jQuery": {
+        "title": "jQuery",
+        "iconName": "jQuery"
+    },
+    "jQuery_Mobile": {
+        "title": "jQuery Mobile",
+        "iconName": "jquerym"
+    },
+    "jQuery_UI": {
+        "title": "jQuery UI",
+        "iconName": "jqueryui"
+    }
+}

@@ -1,0 +1,26 @@
+kind: pipeline
+name: com.kapeli.main
+
+steps:
+- name: clone
+  image: alpine/git
+  commands:
+  - git clone https://github.com/Kapeli/feeds.git workspace/feeds
+  - git clone https://github.com/Kapeli/Dash-X-Platform-Resources.git workspace/resources
+
+- name: generate-docset-list
+  image: python:3-alpine
+  commands:
+    - python -m venv .venv
+    - source .venv/bin/activate
+    - pip install pypng
+    -> ./process_dash_feeds.py
+      --manifest=docsets.json
+      --blacklist=blacklist.json
+      --resource-dir=workspace/resources
+      workspace/feeds
+      workspace/output.json
+
+- name: update-api
+  image: python:3-alpine
+  commands: cat workspace/output.json
