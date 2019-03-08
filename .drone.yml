@@ -14,7 +14,8 @@ steps:
     - python -m venv .venv
     - source .venv/bin/activate
     - pip install pypng
-    -> ./process_dash_feeds.py
+    - >-
+      ./process_dash_feeds.py
       --manifest=docsets.json
       --blacklist=blacklist.json
       --resource-dir=workspace/resources
