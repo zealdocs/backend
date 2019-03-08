@@ -2,7 +2,7 @@ kind: pipeline
 name: com.kapeli.main
 
 steps:
-- name: clone
+- name: fetch
   image: alpine/git
   commands:
   - git clone https://github.com/Kapeli/feeds.git workspace/feeds
