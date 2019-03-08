@@ -24,4 +24,5 @@ steps:
 
 - name: update-api
   image: python:3-alpine
-  commands: cat workspace/output.json
+  commands:
+    - cat workspace/output.json
