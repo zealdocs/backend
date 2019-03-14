@@ -25,12 +25,18 @@ steps:
 
 - name: commit
   image: alpine/git
+  environment:
+    GIT_NAME:
+      from_secret: git_name
+    GIT_EMAIL:
+      from_secret: git_email
+    GITHUB_TOKEN:
+      from_secret: github_token
   commands:
     - cd workspace/gist
-    #- git diff
+    - git diff
     - git config user.name "$GIT_NAME"
-    - git config user.name
     - git config user.email "$GIT_EMAIL"
-    #- printf "username=$GITHUB_TOKEN\n" | git credential fill
+    - printf "username=$GITHUB_TOKEN\n" | git credential fill
     - git commit -a -m"Update docsets"
     - git push
