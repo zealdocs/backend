@@ -4,10 +4,13 @@ name: com.kapeli.main
 steps:
 - name: fetch
   image: alpine/git
+  environment:
+    GITHUB_TOKEN:
+      from_secret: github_token
   commands:
   - git clone https://github.com/Kapeli/feeds.git workspace/feeds
   - git clone https://github.com/Kapeli/Dash-X-Platform-Resources.git workspace/resources
-  - git clone https://gist.github.com/7d64124c24cacf6b29baacfa49f5be70.git workspace/gist
+  - git clone https://${GITHUB_TOKEN}@gist.github.com/7d64124c24cacf6b29baacfa49f5be70.git workspace/gist
 
 - name: process-feeds
   image: python:3-alpine
@@ -23,20 +26,18 @@ steps:
       workspace/feeds
       workspace/gist/docsets.json
 
-- name: commit
+- name: push
   image: alpine/git
   environment:
     GIT_NAME:
       from_secret: git_name
     GIT_EMAIL:
       from_secret: git_email
-    GITHUB_TOKEN:
-      from_secret: github_token
   commands:
     - cd workspace/gist
     - git diff
     - git config user.name "$GIT_NAME"
+    - git config user.name
     - git config user.email "$GIT_EMAIL"
-    - printf "username=$GITHUB_TOKEN\npassword=''" | git credential fill
     - git commit -a -m"Update docsets"
     - git push
