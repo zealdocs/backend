@@ -28,7 +28,7 @@ steps:
   commands:
     - cd workspace/gist
     - git diff
-    - git config user.name $GIT_NAME
+    - git config user.name $GIT_NAME && echo $?
     - git config user.email $GIT_EMAIL
     - printf "username=$GITHUB_TOKEN\n" | git credential fill
     - git commit -a -m"Update docsets"
