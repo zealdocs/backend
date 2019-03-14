@@ -23,8 +23,13 @@ steps:
       workspace/feeds
       workspace/gist/docsets.json
 
-- name: diff
+- name: commit
   image: alpine/git
   commands:
     - cd workspace/gist
     - git diff
+    - git commit -a -m"Update docsets"
+    - git config --global user.name $GIT_NAME
+    - git config --global user.email $GIT_EMAIL
+    - printf "username=$GITHUB_TOKEN\n" | git credential fill
+    - git push
