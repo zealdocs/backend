@@ -5,12 +5,12 @@ steps:
 - name: fetch
   image: alpine/git
   environment:
-    GITHUB_TOKEN:
-      from_secret: github_token
+    GIST_URL:
+      from_secret: gist_url
   commands:
   - git clone https://github.com/Kapeli/feeds.git workspace/feeds
   - git clone https://github.com/Kapeli/Dash-X-Platform-Resources.git workspace/resources
-  - git clone https://${GITHUB_TOKEN}@gist.github.com/7d64124c24cacf6b29baacfa49f5be70.git workspace/gist
+  - git clone "$GIST_URL" workspace/gist
 
 - name: process-feeds
   image: python:3-alpine
