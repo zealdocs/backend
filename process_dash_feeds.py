@@ -101,6 +101,7 @@ def main(argv=sys.argv[1:]):
 
         with open(args.output, 'w') as f:
             json.dump(docset_list, f, indent=2)
+            f.write('\n')
 
 
 if __name__ == '__main__':

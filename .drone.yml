@@ -9,7 +9,7 @@ steps:
   - git clone https://github.com/Kapeli/Dash-X-Platform-Resources.git workspace/resources
   - git clone https://gist.github.com/7d64124c24cacf6b29baacfa49f5be70.git workspace/gist
 
-- name: generate-docset-list
+- name: process-feeds
   image: python:3-alpine
   commands:
     - python -m venv .venv
