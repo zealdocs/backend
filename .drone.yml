@@ -7,6 +7,7 @@ steps:
   commands:
   - git clone https://github.com/Kapeli/feeds.git workspace/feeds
   - git clone https://github.com/Kapeli/Dash-X-Platform-Resources.git workspace/resources
+  - git clone https://gist.github.com/7d64124c24cacf6b29baacfa49f5be70.git workspace/gist
 
 - name: generate-docset-list
   image: python:3-alpine
@@ -20,9 +21,10 @@ steps:
       --blacklist=blacklist.json
       --resource-dir=workspace/resources
       workspace/feeds
-      workspace/output.json
+      workspace/gist/docsets.json
 
-- name: update-api
-  image: python:3-alpine
+- name: diff
+  image: alpine/git
   commands:
-    - cat workspace/output.json
+    - cd workspace/gist
+    - git diff
