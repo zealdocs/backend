@@ -100,7 +100,7 @@ def main(argv=sys.argv[1:]):
         docset_list.sort(key=lambda d: d['name'].lower())
 
         with open(args.output, 'w') as f:
-            json.dump(docset_list, f, indent=4)
+            json.dump(docset_list, f, indent=2)
 
 
 if __name__ == '__main__':
