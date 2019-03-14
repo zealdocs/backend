@@ -67,7 +67,7 @@ def main(argv=sys.argv[1:]):
         # Split version and revision.
         s = entry.find('version').text.split('/')
         version = s[0]
-        revision = s[1] if len(s) == 2 else ''
+        revision = s[1] if len(s) == 2 else '0'
 
         version_list = [v.text for v in entry.findall('./other-versions/version/name')]
         if not version_list and version:
@@ -77,7 +77,7 @@ def main(argv=sys.argv[1:]):
             version_list = [version]
 
         print('  -> Versions:', ", ".join(version_list) if version_list else '<none>')
-        print('  -> Revision:', revision if revision else '<unset>')
+        print('  -> Revision:', revision)
 
         feed_manifest = manifest[feed_name]
 
