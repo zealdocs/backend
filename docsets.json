@@ -14,23 +14,31 @@
         "title": "Akka",
         "iconName": "akka",
         "extra": {
-            "indexFilePath": "scala/package.html"
+            "indexFilePath": "scala/package.html",
+            "isJavaScriptEnabled": true
         }
     },
     "Android": {
         "title": "Android",
         "iconName": "android",
         "extra": {
-            "indexFilePath": "docs/reference/packages.html"
+            "indexFilePath": "docs/reference/packages.html",
+            "isJavaScriptEnabled": true
         }
     },
     "Angular": {
         "title": "Angular",
-        "iconName": "angular"
+        "iconName": "angular",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "AngularJS": {
         "title": "AngularJS",
-        "iconName": "angularjs"
+        "iconName": "angularjs",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Ansible": {
         "title": "Ansible",
@@ -42,7 +50,10 @@
     },
     "Appcelerator_Titanium": {
         "title": "Appcelerator Titanium",
-        "iconName": "titanium"
+        "iconName": "titanium",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "AppleScript": {
         "title": "AppleScript",
@@ -54,7 +65,10 @@
     },
     "BackboneJS": {
         "title": "BackboneJS",
-        "iconName": "backbone"
+        "iconName": "backbone",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Bash": {
         "title": "Bash",
@@ -66,19 +80,31 @@
     },
     "Bootstrap_2": {
         "title": "Bootstrap 2",
-        "iconName": "bootstrap"
+        "iconName": "bootstrap",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Bootstrap_3": {
         "title": "Bootstrap 3",
-        "iconName": "bootstrap"
+        "iconName": "bootstrap",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Bootstrap_4": {
         "title": "Bootstrap 4",
-        "iconName": "bootstrap"
+        "iconName": "bootstrap",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Bourbon": {
         "title": "Bourbon",
-        "iconName": "bourbon"
+        "iconName": "bourbon",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "C": {
         "title": "C",
@@ -100,7 +126,10 @@
     },
     "CSS": {
         "title": "CSS",
-        "iconName": "css"
+        "iconName": "css",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "CakePHP": {
         "title": "CakePHP",
@@ -108,7 +137,10 @@
     },
     "Cappuccino": {
         "title": "Cappuccino",
-        "iconName": "cappuccino"
+        "iconName": "cappuccino",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Chai": {
         "title": "Chai",
@@ -128,7 +160,10 @@
     },
     "Cocos2D-X": {
         "title": "Cocos2D-X",
-        "iconName": "cocos2dx"
+        "iconName": "cocos2dx",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Cocos3D": {
         "title": "Cocos3D",
@@ -141,11 +176,17 @@
     },
     "CodeIgniter": {
         "title": "CodeIgniter",
-        "iconName": "codeigniter"
+        "iconName": "codeigniter",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "CoffeeScript": {
         "title": "CoffeeScript",
-        "iconName": "coffee"
+        "iconName": "coffee",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "ColdFusion": {
         "title": "ColdFusion",
@@ -160,7 +201,10 @@
     },
     "Compass": {
         "title": "Compass",
-        "iconName": "compass"
+        "iconName": "compass",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Cordova": {
         "title": "Cordova",
@@ -204,15 +248,24 @@
     },
     "Dojo": {
         "title": "Dojo",
-        "iconName": "dojo"
+        "iconName": "dojo",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Drupal_7": {
         "title": "Drupal 7",
-        "iconName": "drupal"
+        "iconName": "drupal",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Drupal_8": {
         "title": "Drupal 8",
-        "iconName": "drupal"
+        "iconName": "drupal",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "ElasticSearch": {
         "title": "ElasticSearch",
@@ -220,7 +273,10 @@
     },
     "Elixir": {
         "title": "Elixir",
-        "iconName": "elixir"
+        "iconName": "elixir",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Emacs_Lisp": {
         "title": "Emacs Lisp",
@@ -248,7 +304,10 @@
     },
     "ExtJS": {
         "title": "ExtJS",
-        "iconName": "extjs"
+        "iconName": "extjs",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Flask": {
         "title": "Flask",
@@ -260,7 +319,10 @@
     },
     "Foundation": {
         "title": "Foundation",
-        "iconName": "foundation"
+        "iconName": "foundation",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "GLib": {
         "title": "GLib",
@@ -268,7 +330,10 @@
     },
     "Go": {
         "title": "Go",
-        "iconName": "go"
+        "iconName": "go",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Gradle_DSL": {
         "title": "Gradle DSL",
@@ -288,11 +353,17 @@
     },
     "Groovy": {
         "title": "Groovy",
-        "iconName": "groovy"
+        "iconName": "groovy",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Groovy_JDK": {
         "title": "Groovy JDK",
-        "iconName": "groovy"
+        "iconName": "groovy",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Grunt": {
         "title": "Grunt",
@@ -308,7 +379,10 @@
     },
     "HTML": {
         "title": "HTML",
-        "iconName": "html"
+        "iconName": "html",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Haml": {
         "title": "Haml",
@@ -316,7 +390,10 @@
     },
     "Haskell": {
         "title": "Haskell",
-        "iconName": "haskell"
+        "iconName": "haskell",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Ionic": {
         "title": "Ionic",
@@ -328,23 +405,38 @@
     },
     "JavaFX": {
         "title": "JavaFX",
-        "iconName": "javafx"
+        "iconName": "javafx",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "JavaScript": {
         "title": "JavaScript",
-        "iconName": "javascript"
+        "iconName": "javascript",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Java_EE6": {
         "title": "Java EE6",
-        "iconName": "jee6"
+        "iconName": "jee6",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Java_EE7": {
         "title": "Java EE7",
-        "iconName": "jee7"
+        "iconName": "jee7",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Java_EE8": {
         "title": "Java EE8",
-        "iconName": "jee8"
+        "iconName": "jee8",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Java_SE6": {
         "title": "Java SE6",
@@ -352,7 +444,8 @@
         "extra": {
             "keywords": [
                 "java6"
-            ]
+            ],
+            "isJavaScriptEnabled": true
         }
     },
     "Java_SE7": {
@@ -361,7 +454,8 @@
         "extra": {
             "keywords": [
                 "java7"
-            ]
+            ],
+            "isJavaScriptEnabled": true
         }
     },
     "Java_SE8": {
@@ -370,7 +464,8 @@
         "extra": {
             "keywords": [
                 "java8"
-            ]
+            ],
+            "isJavaScriptEnabled": true
         }
     },
     "Java_SE9": {
@@ -379,7 +474,8 @@
         "extra": {
             "keywords": [
                 "java9"
-            ]
+            ],
+            "isJavaScriptEnabled": true
         }
     },
     "Java_SE10": {
@@ -388,7 +484,8 @@
         "extra": {
             "keywords": [
                 "java10"
-            ]
+            ],
+            "isJavaScriptEnabled": true
         }
     },
     "Java_SE11": {
@@ -397,7 +494,8 @@
         "extra": {
             "keywords": [
                 "java11"
-            ]
+            ],
+            "isJavaScriptEnabled": true
         }
     },
     "Jekyll": {
@@ -410,7 +508,10 @@
     },
     "Joomla": {
         "title": "Joomla",
-        "iconName": "joomla"
+        "iconName": "joomla",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Julia": {
         "title": "Julia",
@@ -418,7 +519,10 @@
     },
     "KnockoutJS": {
         "title": "KnockoutJS",
-        "iconName": "knockout"
+        "iconName": "knockout",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Kobold2D": {
         "title": "Kobold2D",
@@ -430,7 +534,10 @@
     },
     "Laravel": {
         "title": "Laravel",
-        "iconName": "laravel"
+        "iconName": "laravel",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Less": {
         "title": "Less",
@@ -438,7 +545,10 @@
     },
     "Lo-Dash": {
         "title": "Lo-Dash",
-        "iconName": "lodash"
+        "iconName": "lodash",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Lua_5.1": {
         "title": "Lua 5.1",
@@ -463,7 +573,10 @@
     },
     "MarionetteJS": {
         "title": "MarionetteJS",
-        "iconName": "marionette"
+        "iconName": "marionette",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Markdown": {
         "title": "Markdown",
@@ -511,7 +624,10 @@
     },
     "Neat": {
         "title": "Neat",
-        "iconName": "neat"
+        "iconName": "neat",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Nginx": {
         "title": "Nginx",
@@ -567,17 +683,24 @@
     },
     "PhoneGap": {
         "title": "PhoneGap",
-        "iconName": "phonegap"
+        "iconName": "phonegap",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Play_Java": {
         "title": "Play Java",
-        "iconName": "playjava"
+        "iconName": "playjava",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Play_Scala": {
         "title": "Play Scala",
         "iconName": "playscala",
         "extra": {
-            "indexFilePath": "scala/package.html"
+            "indexFilePath": "scala/package.html",
+            "isJavaScriptEnabled": true
         }
     },
     "Polymer.dart": {
@@ -590,13 +713,17 @@
     },
     "Processing": {
         "title": "Processing",
-        "iconName": "processing"
+        "iconName": "processing",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "PrototypeJS": {
         "title": "PrototypeJS",
         "iconName": "prototype",
         "extra": {
-            "indexFilePath": "prototypejs/index.html"
+            "indexFilePath": "prototypejs/index.html",
+            "isJavaScriptEnabled": true
         }
     },
     "Pug": {
@@ -605,7 +732,10 @@
     },
     "Puppet": {
         "title": "Puppet",
-        "iconName": "puppet"
+        "iconName": "puppet",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Python_2": {
         "title": "Python 2",
@@ -662,7 +792,10 @@
     },
     "Redis": {
         "title": "Redis",
-        "iconName": "redis"
+        "iconName": "redis",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "RequireJS": {
         "title": "RequireJS",
@@ -670,11 +803,17 @@
     },
     "Ruby": {
         "title": "Ruby",
-        "iconName": "ruby"
+        "iconName": "ruby",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Ruby_2": {
         "title": "Ruby 2",
-        "iconName": "ruby"
+        "iconName": "ruby",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Ruby_on_Rails_3": {
         "title": "Ruby on Rails 3",
@@ -683,7 +822,8 @@
             "keywords": [
                 "ror3",
                 "ror"
-            ]
+            ],
+            "isJavaScriptEnabled": true
         }
     },
     "Ruby_on_Rails_4": {
@@ -693,7 +833,8 @@
             "keywords": [
                 "ror4",
                 "ror"
-            ]
+            ],
+            "isJavaScriptEnabled": true
         }
     },
     "Ruby_on_Rails_5": {
@@ -703,12 +844,16 @@
             "keywords": [
                 "ror5",
                 "ror"
-            ]
+            ],
+            "isJavaScriptEnabled": true
         }
     },
     "RubyMotion": {
         "title": "RubyMotion",
-        "iconName": "rubymotion"
+        "iconName": "rubymotion",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Rust": {
         "title": "Rust",
@@ -727,7 +872,10 @@
     },
     "SVG": {
         "title": "SVG",
-        "iconName": "svg"
+        "iconName": "svg",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "SailsJS": {
         "title": "SailsJS",
@@ -739,11 +887,17 @@
     },
     "Sass": {
         "title": "Sass",
-        "iconName": "sass"
+        "iconName": "sass",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Scala": {
         "title": "Scala",
-        "iconName": "scala"
+        "iconName": "scala",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "SciPy": {
         "title": "SciPy",
@@ -755,7 +909,10 @@
     },
     "Sencha_Touch": {
         "title": "Sencha Touch",
-        "iconName": "sencha"
+        "iconName": "sencha",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Sinon": {
         "title": "Sinon",
@@ -791,11 +948,17 @@
     },
     "Symfony": {
         "title": "Symfony",
-        "iconName": "symfony"
+        "iconName": "symfony",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "TYPO3": {
         "title": "TYPO3",
-        "iconName": "typo3"
+        "iconName": "typo3",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Tcl": {
         "title": "Tcl",
@@ -819,11 +982,17 @@
     },
     "UnderscoreJS": {
         "title": "UnderscoreJS",
-        "iconName": "underscore"
+        "iconName": "underscore",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Unity_3D": {
         "title": "Unity 3D",
-        "iconName": "unity3d"
+        "iconName": "unity3d",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "VMware_vSphere": {
         "title": "VMware vSphere",
@@ -850,7 +1019,10 @@
     },
     "XSLT": {
         "title": "XSLT",
-        "iconName": "xslt"
+        "iconName": "xslt",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Xamarin": {
         "title": "Xamarin",
@@ -858,27 +1030,45 @@
     },
     "Xojo": {
         "title": "Xojo",
-        "iconName": "xojo"
+        "iconName": "xojo",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "YUI": {
         "title": "YUI",
-        "iconName": "yui"
+        "iconName": "yui",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Yii": {
         "title": "Yii",
-        "iconName": "yii"
+        "iconName": "yii",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Zend_Framework_1": {
         "title": "Zend Framework 1",
-        "iconName": "zend"
+        "iconName": "zend",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Zend_Framework_2": {
         "title": "Zend Framework 2",
-        "iconName": "zend"
+        "iconName": "zend",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "Zend_Framework_3": {
         "title": "Zend Framework 3",
-        "iconName": "zend"
+        "iconName": "zend",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "ZeptoJS": {
         "title": "ZeptoJS",
@@ -886,14 +1076,23 @@
     },
     "jQuery": {
         "title": "jQuery",
-        "iconName": "jQuery"
+        "iconName": "jQuery",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "jQuery_Mobile": {
         "title": "jQuery Mobile",
-        "iconName": "jquerym"
+        "iconName": "jquerym",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "jQuery_UI": {
         "title": "jQuery UI",
-        "iconName": "jqueryui"
+        "iconName": "jqueryui",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     }
 }
