@@ -30,7 +30,7 @@
         "title": "Angular",
         "iconName": "angular",
         "extra": {
-            "isJavaScriptEnabled": true
+            "isJavaScriptEnabled": false
         }
     },
     "AngularJS": {
