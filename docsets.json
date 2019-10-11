@@ -498,6 +498,16 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Java_SE12": {
+        "title": "Java SE12",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java12"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
     "Jekyll": {
         "title": "Jekyll",
         "iconName": "jekyll"
