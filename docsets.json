@@ -848,6 +848,17 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Ruby_on_Rails_6": {
+        "title": "Ruby on Rails 6",
+        "iconName": "rails",
+        "extra": {
+            "keywords": [
+                "ror6",
+                "ror"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
     "RubyMotion": {
         "title": "RubyMotion",
         "iconName": "rubymotion",
