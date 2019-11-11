@@ -687,7 +687,8 @@
         "title": "Perl",
         "iconName": "perl",
         "extra": {
-            "indexFilePath": "perldoc-html/index-functions-by-cat.html"
+            "indexFilePath": "perldoc-html/index-functions-by-cat.html",
+            "isJavaScriptEnabled": true
         }
     },
     "Phalcon": {
