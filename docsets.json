@@ -685,7 +685,10 @@
     },
     "Perl": {
         "title": "Perl",
-        "iconName": "perl"
+        "iconName": "perl",
+        "extra": {
+            "indexFilePath": "perldoc-html/index-functions-by-cat.html"
+        }
     },
     "Phalcon": {
         "title": "Phalcon",
@@ -873,6 +876,7 @@
         "title": "RubyMotion",
         "iconName": "rubymotion",
         "extra": {
+            "indexFilePath": "api/index.html",
             "isJavaScriptEnabled": true
         }
     },
