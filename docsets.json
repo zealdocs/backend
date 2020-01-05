@@ -110,14 +110,14 @@
         "title": "C",
         "iconName": "c",
         "extra": {
-            "indexFilePath": "output/en/c.html"
+            "indexFilePath": "output/en.cppreference.com/w/c.html"
         }
     },
     "C++": {
         "title": "C++",
         "iconName": "cpp",
         "extra": {
-            "indexFilePath": "output/en/cpp.html"
+            "indexFilePath": "output/en.cppreference.com/w/cpp.html"
         }
     },
     "CMake": {
@@ -877,7 +877,6 @@
         "title": "RubyMotion",
         "iconName": "rubymotion",
         "extra": {
-            "indexFilePath": "api/index.html",
             "isJavaScriptEnabled": true
         }
     },
