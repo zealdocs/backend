@@ -292,7 +292,10 @@
     },
     "Erlang": {
         "title": "Erlang",
-        "iconName": "erlang"
+        "iconName": "erlang",
+        "extra": {
+            "indexFilePath": "doc/index.html"
+        }
     },
     "Express": {
         "title": "Express",
