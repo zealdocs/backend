@@ -885,7 +885,10 @@
     },
     "Rust": {
         "title": "Rust",
-        "iconName": "rust"
+        "iconName": "rust",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
     },
     "SQLAlchemy": {
         "title": "SQLAlchemy",
