@@ -99,6 +99,13 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Bootstrap_5": {
+        "title": "Bootstrap 5",
+        "iconName": "bootstrap",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
+    },
     "Bourbon": {
         "title": "Bourbon",
         "iconName": "bourbon",
@@ -511,6 +518,26 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Java_SE13": {
+        "title": "Java SE13",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java13"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE14": {
+        "title": "Java SE14",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java14"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
     "Jekyll": {
         "title": "Jekyll",
         "iconName": "jekyll"
@@ -582,6 +609,13 @@
         "iconName": "lua",
         "extra": {
             "indexFilePath": "www.lua.org/manual/5.3/index.html"
+        }
+    },
+    "Lua_5.4": {
+    "title": "Lua 5.4",
+        "iconName": "lua",
+        "extra": {
+            "indexFilePath": "www.lua.org/manual/5.4/index.html"
         }
     },
     "MarionetteJS": {
