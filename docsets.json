@@ -274,6 +274,13 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Drupal_9": {
+        "title": "Drupal 9",
+        "iconName": "drupal",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
+    },
     "ElasticSearch": {
         "title": "ElasticSearch",
         "iconName": "elasticsearch"
@@ -534,6 +541,26 @@
         "extra": {
             "keywords": [
                 "java14"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE15": {
+        "title": "Java SE15",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java15"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE16": {
+        "title": "Java SE16",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java16"
             ],
             "isJavaScriptEnabled": true
         }
@@ -829,6 +856,16 @@
             ]
         }
     },
+    "Qt_6": {
+        "title": "Qt 6",
+        "iconName": "qt",
+        "extra": {
+            "keywords": [
+                "qt6",
+                "qt"
+            ]
+        }
+    },
     "R": {
         "title": "R",
         "iconName": "r"
@@ -863,6 +900,21 @@
         "title": "Ruby 2",
         "iconName": "ruby",
         "extra": {
+            "keywords": [
+                "ruby2",
+                "ruby"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Ruby_3": {
+        "title": "Ruby 3",
+        "iconName": "ruby",
+        "extra": {
+            "keywords": [
+                "ruby3",
+                "ruby"
+            ],
             "isJavaScriptEnabled": true
         }
     },
