@@ -565,6 +565,16 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Java_SE17": {
+        "title": "Java SE17",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java17"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
     "Jekyll": {
         "title": "Jekyll",
         "iconName": "jekyll"
@@ -957,6 +967,17 @@
         "extra": {
             "keywords": [
                 "ror6",
+                "ror"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Ruby_on_Rails_7": {
+        "title": "Ruby on Rails 7",
+        "iconName": "rails",
+        "extra": {
+            "keywords": [
+                "ror7",
                 "ror"
             ],
             "isJavaScriptEnabled": true
