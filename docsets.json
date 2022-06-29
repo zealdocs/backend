@@ -575,6 +575,16 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Java_SE18": {
+        "title": "Java SE18",
+        "iconName": "java",
+        "extra": {
+            "keywords": [
+                "java18"
+            ],
+            "isJavaScriptEnabled": true
+        }
+    },
     "Jekyll": {
         "title": "Jekyll",
         "iconName": "jekyll"
