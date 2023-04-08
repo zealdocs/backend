@@ -12,7 +12,7 @@ import xml.etree.ElementTree
 
 import png
 
-SOURCE_ID = 'com.kapeli'
+SOURCE_ID = 'com.kapeli.dash'
 
 PNG_CHUNK_WHITELIST = [b'IHDR', b'PLTE', b'IDAT', b'IEND', b'tRNS']
 
