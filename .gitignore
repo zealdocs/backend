@@ -110,3 +110,6 @@ venv.bak/
 /workspace/feeds
 /workspace/resources
 /workspace/output.json
+
+# act
+.actrc

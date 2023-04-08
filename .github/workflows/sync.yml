@@ -1,0 +1,51 @@
+name: Docset Sync
+
+on:
+  push:
+    branches: [main]
+  schedule:
+  - cron: '0 0 * * *'
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  sync-dash:
+    name: Sync Dash Docsets
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Clone Dash Repositories
+      run: |
+        git clone https://github.com/Kapeli/feeds.git workspace/feeds
+        git clone https://github.com/Kapeli/Dash-X-Platform-Resources.git workspace/resources
+        git clone ${{ secrets.GIST_URL }} workspace/gist
+
+    - name: Execute
+      run: |
+        sudo apt-get -y -qq update
+        sudo apt-get -y -qq --no-install-recommends install python3-venv
+        python -m venv .venv
+        source .venv/bin/activate
+        pip install pypng
+        ./process_dash_feeds.py \
+          --manifest=docsets.json \
+          --blacklist=blacklist.json \
+          --resource-dir=workspace/resources \
+          workspace/feeds \
+          workspace/gist/docsets.json
+
+    - name: Diff
+      run: |
+        cd workspace/gist
+        git diff
+
+    - name: Commit
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update docsets
+        repository: workspace/gist
