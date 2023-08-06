@@ -281,6 +281,13 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Drupal_10": {
+        "title": "Drupal 10",
+        "iconName": "drupal",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
+    },
     "ElasticSearch": {
         "title": "ElasticSearch",
         "iconName": "elasticsearch"
