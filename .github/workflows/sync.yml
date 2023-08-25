@@ -28,11 +28,7 @@ jobs:
 
     - name: Execute
       run: |
-        sudo apt-get -y -qq update
-        sudo apt-get -y -qq --no-install-recommends install python3-venv
-        python -m venv .venv
-        source .venv/bin/activate
-        pip install pypng
+        sudo apt-get -y -qq --no-install-recommends install python3-png
         ./process_dash_feeds.py \
           --manifest=docsets.json \
           --blacklist=blacklist.json \
