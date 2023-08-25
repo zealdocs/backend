@@ -676,7 +676,7 @@
         }
     },
     "Lua_5.4": {
-    "title": "Lua 5.4",
+        "title": "Lua 5.4",
         "iconName": "lua",
         "extra": {
             "indexFilePath": "www.lua.org/manual/5.4/index.html"
