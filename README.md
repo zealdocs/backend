@@ -1,2 +1,5 @@
-# sync-job-com.kapeli.dash
-CI job to synchronize Dash docset feeds with Zeal
+# `api.zealdocs.org`
+
+At this point this is just a static site serving lists of docsets and Zeal releases.
+
+Docsets are updated using GitHub Actions.

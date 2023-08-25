@@ -24,7 +24,6 @@ jobs:
       run: |
         git clone https://github.com/Kapeli/feeds.git build/feeds
         git clone https://github.com/Kapeli/Dash-X-Platform-Resources.git build/resources
-        git clone ${{ secrets.GIST_URL }} build/gist
 
     - name: Execute
       run: |
@@ -34,15 +33,19 @@ jobs:
           --blacklist=blacklist.json \
           --resource-dir=build/resources \
           build/feeds \
-          build/gist/docsets.json
+          public/docsets.json
 
-    - name: Diff
-      run: |
-        cd build/gist
-        git diff
-
-    - name: Commit
-      uses: stefanzweifel/git-auto-commit-action@v4
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v2
       with:
-        commit_message: Update docsets
-        repository: build/gist
+        publish-dir: public
+        production-branch: main
+        netlify-config-path: netlify.toml
+        alias: ${{ github.head_ref }}
+        deploy-message: "Deployed with GitHub Actions"
+        enable-pull-request-comment: false
+        enable-commit-comment: false
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      timeout-minutes: 1

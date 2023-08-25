@@ -108,3 +108,9 @@ venv.bak/
 
 # act
 .actrc
+
+# Generated files
+public/docsets.json
+
+# Local Netlify folder
+.netlify/
