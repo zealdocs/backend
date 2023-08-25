@@ -104,12 +104,10 @@ venv.bak/
 .mypy_cache/
 
 # VS Code
-/.vscode
+.vscode/
 
 # Job specific paths.
-/workspace/feeds
-/workspace/resources
-/workspace/output.json
+workspace/
 
 # act
 .actrc
