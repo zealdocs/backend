@@ -1,0 +1,25 @@
+{
+    "name": "zealdocs-backend",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "prettier": "prettier --check .",
+        "prettier:fix": "prettier --write ."
+    },
+    "devDependencies": {
+        "@types/node": "^20.5.7",
+        "@types/react": "18.2.21",
+        "@vercel/edge": "^1.0.1",
+        "eslint": "^8.48.0",
+        "eslint-config-next": "^13.4.19",
+        "next": "^13.4.19",
+        "prettier": "^3.0.3",
+        "react": "^18.2.0",
+        "typescript": "^5.2.2"
+    }
+}

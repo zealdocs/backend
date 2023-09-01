@@ -109,8 +109,18 @@ venv.bak/
 # act
 .actrc
 
+# Node dependencies
+node_modules/
+
+# Next.js
+.next/
+next-env.d.ts
+
 # Generated files
 public/docsets.json
 
 # Local Netlify folder
 .netlify/
+
+# Vercel
+.vercel/
