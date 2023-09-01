@@ -176,9 +176,7 @@
         "title": "Cocos3D",
         "iconName": "cocos2d",
         "extra": {
-            "keywords": [
-                "cocos3d"
-            ]
+            "keywords": ["cocos3d"]
         }
     },
     "CodeIgniter": {
@@ -466,9 +464,7 @@
         "title": "Java SE6",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java6"
-            ],
+            "keywords": ["java6"],
             "isJavaScriptEnabled": true
         }
     },
@@ -476,9 +472,7 @@
         "title": "Java SE7",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java7"
-            ],
+            "keywords": ["java7"],
             "isJavaScriptEnabled": true
         }
     },
@@ -486,9 +480,7 @@
         "title": "Java SE8",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java8"
-            ],
+            "keywords": ["java8"],
             "isJavaScriptEnabled": true
         }
     },
@@ -496,9 +488,7 @@
         "title": "Java SE9",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java9"
-            ],
+            "keywords": ["java9"],
             "isJavaScriptEnabled": true
         }
     },
@@ -506,9 +496,7 @@
         "title": "Java SE10",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java10"
-            ],
+            "keywords": ["java10"],
             "isJavaScriptEnabled": true
         }
     },
@@ -516,9 +504,7 @@
         "title": "Java SE11",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java11"
-            ],
+            "keywords": ["java11"],
             "isJavaScriptEnabled": true
         }
     },
@@ -526,9 +512,7 @@
         "title": "Java SE12",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java12"
-            ],
+            "keywords": ["java12"],
             "isJavaScriptEnabled": true
         }
     },
@@ -536,9 +520,7 @@
         "title": "Java SE13",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java13"
-            ],
+            "keywords": ["java13"],
             "isJavaScriptEnabled": true
         }
     },
@@ -546,9 +528,7 @@
         "title": "Java SE14",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java14"
-            ],
+            "keywords": ["java14"],
             "isJavaScriptEnabled": true
         }
     },
@@ -556,9 +536,7 @@
         "title": "Java SE15",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java15"
-            ],
+            "keywords": ["java15"],
             "isJavaScriptEnabled": true
         }
     },
@@ -566,9 +544,7 @@
         "title": "Java SE16",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java16"
-            ],
+            "keywords": ["java16"],
             "isJavaScriptEnabled": true
         }
     },
@@ -576,9 +552,7 @@
         "title": "Java SE17",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java17"
-            ],
+            "keywords": ["java17"],
             "isJavaScriptEnabled": true
         }
     },
@@ -586,9 +560,7 @@
         "title": "Java SE18",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java18"
-            ],
+            "keywords": ["java18"],
             "isJavaScriptEnabled": true
         }
     },
@@ -596,9 +568,7 @@
         "title": "Java SE19",
         "iconName": "java",
         "extra": {
-            "keywords": [
-                "java19"
-            ],
+            "keywords": ["java19"],
             "isJavaScriptEnabled": true
         }
     },
@@ -856,20 +826,14 @@
         "title": "Python 2",
         "iconName": "python",
         "extra": {
-            "keywords": [
-                "python2",
-                "python"
-            ]
+            "keywords": ["python2", "python"]
         }
     },
     "Python_3": {
         "title": "Python 3",
         "iconName": "python",
         "extra": {
-            "keywords": [
-                "python3",
-                "python"
-            ]
+            "keywords": ["python3", "python"]
         }
     },
     "Qt_4": {
@@ -877,30 +841,21 @@
         "iconName": "qt",
         "extra": {
             "indexFilePath": "html/index.html",
-            "keywords": [
-                "qt4",
-                "qt"
-            ]
+            "keywords": ["qt4", "qt"]
         }
     },
     "Qt_5": {
         "title": "Qt 5",
         "iconName": "qt",
         "extra": {
-            "keywords": [
-                "qt5",
-                "qt"
-            ]
+            "keywords": ["qt5", "qt"]
         }
     },
     "Qt_6": {
         "title": "Qt 6",
         "iconName": "qt",
         "extra": {
-            "keywords": [
-                "qt6",
-                "qt"
-            ]
+            "keywords": ["qt6", "qt"]
         }
     },
     "R": {
@@ -937,10 +892,7 @@
         "title": "Ruby 2",
         "iconName": "ruby",
         "extra": {
-            "keywords": [
-                "ruby2",
-                "ruby"
-            ],
+            "keywords": ["ruby2", "ruby"],
             "isJavaScriptEnabled": true
         }
     },
@@ -948,10 +900,7 @@
         "title": "Ruby 3",
         "iconName": "ruby",
         "extra": {
-            "keywords": [
-                "ruby3",
-                "ruby"
-            ],
+            "keywords": ["ruby3", "ruby"],
             "isJavaScriptEnabled": true
         }
     },
@@ -959,10 +908,7 @@
         "title": "Ruby on Rails 3",
         "iconName": "rails",
         "extra": {
-            "keywords": [
-                "ror3",
-                "ror"
-            ],
+            "keywords": ["ror3", "ror"],
             "isJavaScriptEnabled": true
         }
     },
@@ -970,10 +916,7 @@
         "title": "Ruby on Rails 4",
         "iconName": "rails",
         "extra": {
-            "keywords": [
-                "ror4",
-                "ror"
-            ],
+            "keywords": ["ror4", "ror"],
             "isJavaScriptEnabled": true
         }
     },
@@ -981,10 +924,7 @@
         "title": "Ruby on Rails 5",
         "iconName": "rails",
         "extra": {
-            "keywords": [
-                "ror5",
-                "ror"
-            ],
+            "keywords": ["ror5", "ror"],
             "isJavaScriptEnabled": true
         }
     },
@@ -992,10 +932,7 @@
         "title": "Ruby on Rails 6",
         "iconName": "rails",
         "extra": {
-            "keywords": [
-                "ror6",
-                "ror"
-            ],
+            "keywords": ["ror6", "ror"],
             "isJavaScriptEnabled": true
         }
     },
@@ -1003,10 +940,7 @@
         "title": "Ruby on Rails 7",
         "iconName": "rails",
         "extra": {
-            "keywords": [
-                "ror7",
-                "ror"
-            ],
+            "keywords": ["ror7", "ror"],
             "isJavaScriptEnabled": true
         }
     },
