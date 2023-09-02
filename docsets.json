@@ -406,6 +406,13 @@
             "isJavaScriptEnabled": true
         }
     },
+    "HTTP": {
+        "title": "HTTP",
+        "iconName": "http",
+        "extra": {
+            "isJavaScriptEnabled": true
+        }
+    },
     "Haml": {
         "title": "Haml",
         "iconName": "haml"
@@ -569,6 +576,14 @@
         "iconName": "java",
         "extra": {
             "keywords": ["java19"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE20": {
+        "title": "Java SE20",
+        "iconName": "java",
+        "extra": {
+            "keywords": ["java20"],
             "isJavaScriptEnabled": true
         }
     },
