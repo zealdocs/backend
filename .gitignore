@@ -119,8 +119,5 @@ next-env.d.ts
 # Generated files
 public/docsets.json
 
-# Local Netlify folder
-.netlify/
-
 # Vercel
 .vercel/
