@@ -2,22 +2,10 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { geolocation } from "@vercel/edge";
 
-export const runtime = "edge"; // 'nodejs' is the default
+import docsets from "../../../../../../docsets.json";
 
-/*const docsetSourceMap: DocsetSourceMap = {
-    "com.kapeli": {
-        servers: [
-            "frankfurt.kapeli.com",
-            "london.kapeli.com",
-            "newyork.kapeli.com",
-            "sanfrancisco.kapeli.com",
-            "tokyo.kapeli.com",
-        ],
-        paths: {
-            latest: "/feeds/{docset_id}.tgz",
-        },
-    },
-};*/
+// TODO: Use `edge` once https://github.com/vercel/next.js/issues/48295 is fixed.
+export const runtime = "nodejs";
 
 const defaultMirror = "frankfurt.kapeli.com";
 
@@ -122,9 +110,11 @@ const regionMap: RegionMap = {
     },
 };
 
-export function GET(request: NextRequest) {
-    const docsetId = request.nextUrl.searchParams.get("docsetId")!;
-    // TODO: Validate against docsets.json
+export function GET(request: NextRequest, { params }: { params: { docsetId: string } }) {
+    const docsetId = params.docsetId;
+    if (!Object.hasOwn(docsets, docsetId)) {
+        return new NextResponse("Not found", { status: 404 });
+    }
 
     const regionCode = geolocation(request).region;
     if (regionCode === undefined) {

@@ -24,8 +24,18 @@ const nextConfig = {
                 },
                 // go.zealdocs.org
                 {
-                    source: "/:path*",
-                    destination: "/api/go/:path*",
+                    source: "/l/:path*",
+                    destination: "/api/go/l/:path*",
+                    has: [
+                        {
+                            type: "host",
+                            value: "go.zealdocs.org",
+                        },
+                    ],
+                },
+                {
+                    source: "/d/:path*",
+                    destination: "/api/go/d/:path*",
                     has: [
                         {
                             type: "host",
