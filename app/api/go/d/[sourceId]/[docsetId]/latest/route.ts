@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { geolocation } from "@vercel/edge";
 
-import docsets from "../../../../../../docsets.json";
+import docsets from "../../../../../../../docsets.json";
 
 // TODO: Use `edge` once https://github.com/vercel/next.js/issues/48295 is fixed.
 export const runtime = "nodejs";
@@ -110,9 +110,9 @@ const regionMap: RegionMap = {
     },
 };
 
-export function GET(request: NextRequest, { params }: { params: { docsetId: string } }) {
-    const docsetId = params.docsetId;
-    if (!Object.hasOwn(docsets, docsetId)) {
+export function GET(request: NextRequest, { params }: { params: { sourceId: string, docsetId: string } }) {
+    const { sourceId, docsetId } = params;
+    if (sourceId != "com.kapeli" || !Object.hasOwn(docsets, docsetId)) {
         return new NextResponse("Not found", { status: 404 });
     }
 
