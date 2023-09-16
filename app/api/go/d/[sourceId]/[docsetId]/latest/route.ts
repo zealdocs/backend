@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { geolocation } from "@vercel/edge";
 
-import docsets from "../../../../../../../docsets.json";
+import docsets from "@/docsets.json";
 
 // TODO: Use `edge` once https://github.com/vercel/next.js/issues/48295 is fixed.
 export const runtime = "nodejs";
