@@ -110,7 +110,7 @@ const regionMap: RegionMap = {
     },
 };
 
-export function GET(request: NextRequest, { params }: { params: { sourceId: string, docsetId: string } }) {
+export function GET(request: NextRequest, { params }: { params: { sourceId: string; docsetId: string } }) {
     const { sourceId, docsetId } = params;
     if (sourceId != "com.kapeli" || !Object.hasOwn(docsets, docsetId)) {
         return new NextResponse("Not found", { status: 404 });
