@@ -15,12 +15,14 @@ const nextConfig = {
             beforeFiles: [
                 // api.zealdocs.org
                 {
-                    source: "/v1/docsets",
-                    destination: "/docsets.json",
-                },
-                {
-                    source: "/v1/releases",
-                    destination: "/releases.json",
+                    source: "/v1/:file(releases|docsets)",
+                    destination: "/_api/v1/:file.json",
+                    has: [
+                        {
+                            type: "host",
+                            value: "api.zealdocs.org",
+                        },
+                    ],
                 },
                 // go.zealdocs.org
                 {

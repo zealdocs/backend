@@ -116,8 +116,8 @@ node_modules/
 .next/
 next-env.d.ts
 
-# Generated files
-public/docsets.json
-
 # Vercel
 .vercel/
+
+# Generated files
+public/_api/v1/docsets.json

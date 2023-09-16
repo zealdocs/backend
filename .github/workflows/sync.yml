@@ -33,7 +33,7 @@ jobs:
             --blacklist=blacklist.json \
             --resource-dir=build/resources \
             build/feeds \
-            public/docsets.json
+            public/_api/v1/docsets.json
 
       - name: Deploy to Vercel
         run: |
