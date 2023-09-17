@@ -113,11 +113,13 @@ const regionMap: RegionMap = {
 export function GET(request: NextRequest, { params }: { params: { sourceId: string; docsetId: string } }) {
     const { sourceId, docsetId } = params;
     if (sourceId != "com.kapeli" || !Object.hasOwn(docsets, docsetId)) {
+        console.error("Unknown sourceId or docsetId:", sourceId, docsetId);
         return new NextResponse("Not found", { status: 404 });
     }
 
     const regionCode = geolocation(request).region;
     if (regionCode === undefined) {
+        console.error("Unknown region:", regionCode);
         return NextResponse.redirect(`https://${defaultMirror}/feeds/${docsetId}.tgz`);
     }
 
