@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { geolocation } from "@vercel/edge";
 
 import docsets from "@/docsets.json";
@@ -111,6 +110,11 @@ const regionMap: RegionMap = {
 };
 
 export function GET(request: NextRequest, { params }: { params: { sourceId: string; docsetId: string } }) {
+    // Hacky workaround for Next.js/Vercel bug reported in https://github.com/zealdocs/zeal/issues/1537.
+    if (request.nextUrl.pathname.endsWith("/d/com.kapeli/C++/latest")) {
+        params.docsetId = "C++";
+    }
+
     const { sourceId, docsetId } = params;
     if (sourceId != "com.kapeli" || !Object.hasOwn(docsets, docsetId)) {
         console.error("Unknown sourceId or docsetId:", sourceId, docsetId);
