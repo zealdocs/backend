@@ -14,7 +14,7 @@
         "title": "Akka",
         "iconName": "akka",
         "extra": {
-            "indexFilePath": "scala/package.html",
+            "indexFilePath": "scala/akka/package.html",
             "isJavaScriptEnabled": true
         }
     },
