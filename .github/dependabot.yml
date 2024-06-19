@@ -10,5 +10,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
-    labels: []
+      interval: "weekly"
+    groups:
+      dev-dependencies:
+        applies-to: version-updates
+        dependency-type: development
