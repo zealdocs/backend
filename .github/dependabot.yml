@@ -7,7 +7,3 @@ updates:
     commit-message:
       prefix: ci(github)
     labels: []
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
