@@ -15,7 +15,7 @@
         "@types/node": "^22.5.2",
         "@types/react": "18.3.5",
         "@vercel/edge": "^1.1.2",
-        "eslint": "^8.57.0",
+        "eslint": "^9.26.0",
         "eslint-config-next": "^14.2.7",
         "next": "^16.1.5",
         "prettier": "^3.3.3",
