@@ -32,7 +32,8 @@ const app = new Elysia()
             return "Not found";
         }
 
-        const mirror = getMirror(geolocation(request).region);
+        const { latitude, longitude } = geolocation(request);
+        const mirror = getMirror(latitude, longitude);
         return redirect(`https://${mirror}/feeds/${docsetId}.tgz`, 302);
     });
 
