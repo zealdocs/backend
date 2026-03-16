@@ -1,0 +1,80 @@
+import { beforeAll, afterAll, describe, it, expect } from "bun:test";
+import { existsSync, mkdirSync, writeFileSync, unlinkSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
+import app from "./index";
+
+const docsetsPath = fileURLToPath(new URL("../public/_api/v1/docsets.json", import.meta.url));
+const docsetsCreatedByTest = !existsSync(docsetsPath);
+
+beforeAll(() => {
+    if (docsetsCreatedByTest) {
+        mkdirSync(dirname(docsetsPath), { recursive: true });
+        writeFileSync(docsetsPath, "[]\n");
+    }
+});
+
+afterAll(() => {
+    if (docsetsCreatedByTest) unlinkSync(docsetsPath);
+});
+
+describe("GET /", () => {
+    it("redirects to zealdocs.org", async () => {
+        const res = await app.handle(new Request("http://localhost/"));
+        expect(res.status).toBe(302);
+        expect(res.headers.get("location")).toBe("https://zealdocs.org");
+    });
+});
+
+describe("GET /l/:linkId", () => {
+    it("redirects to GitHub", async () => {
+        const res = await app.handle(new Request("http://localhost/l/github"));
+        expect(res.status).toBe(302);
+        expect(res.headers.get("location")).toBe("https://github.com/zealdocs/zeal");
+    });
+
+    it("returns 404 for unknown link", async () => {
+        const res = await app.handle(new Request("http://localhost/l/unknown"));
+        expect(res.status).toBe(404);
+    });
+});
+
+describe("GET /v1/releases", () => {
+    it("returns 200 JSON", async () => {
+        const res = await app.handle(new Request("http://localhost/v1/releases"));
+        expect(res.status).toBe(200);
+        expect(res.headers.get("content-type")).toContain("application/json");
+    });
+});
+
+describe("GET /v1/docsets", () => {
+    it("returns 200 JSON", async () => {
+        const res = await app.handle(new Request("http://localhost/v1/docsets"));
+        expect(res.status).toBe(200);
+        expect(res.headers.get("content-type")).toContain("application/json");
+    });
+});
+
+describe("GET /d/:sourceId/:docsetId/latest", () => {
+    it("redirects to a Kapeli mirror for known docsets", async () => {
+        const res = await app.handle(new Request("http://localhost/d/com.kapeli/Python_3/latest"));
+        expect(res.status).toBe(302);
+        expect(res.headers.get("location")).toMatch(/\.kapeli\.com\/feeds\/Python_3\.tgz$/);
+    });
+
+    it("returns 404 for unknown sourceId", async () => {
+        const res = await app.handle(new Request("http://localhost/d/unknown/Python/latest"));
+        expect(res.status).toBe(404);
+    });
+
+    it("returns 404 for unknown docsetId", async () => {
+        const res = await app.handle(new Request("http://localhost/d/com.kapeli/NoSuchDocset/latest"));
+        expect(res.status).toBe(404);
+    });
+
+    it("handles C++ docset workaround", async () => {
+        const res = await app.handle(new Request("http://localhost/d/com.kapeli/C++/latest"));
+        expect(res.status).toBe(302);
+        expect(res.headers.get("location")).toMatch(/\.kapeli\.com\/feeds\/C\+\+\.tgz$/);
+    });
+});

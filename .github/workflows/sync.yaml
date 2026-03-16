@@ -14,30 +14,37 @@ concurrency:
 jobs:
   sync-dash:
     name: Sync Dash Docsets
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1"
 
       - name: Clone Dash Repositories
         run: |
           git clone https://github.com/Kapeli/feeds.git build/feeds
           git clone https://github.com/Kapeli/Dash-X-Platform-Resources.git build/resources
 
+      - name: Test
+        run: |
+          bun install
+          bun test
+
       - name: Execute
         run: |
-          sudo apt-get -y -qq --no-install-recommends install python3-png
-          ./process_dash_feeds.py \
-            --manifest=docsets.json \
-            --blacklist=blacklist.json \
+          bun run process-feeds \
             --resource-dir=build/resources \
             build/feeds \
             public/_api/v1/docsets.json
 
       - name: Deploy to Vercel
         run: |
-          npm install --global vercel pnpm
+          bun install --global vercel
           vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
           vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
           vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
