@@ -53,7 +53,9 @@ describe("GET /d/:sourceId/:docsetId/:version", () => {
     it("uses source feed name in URL for split docsets", async () => {
         const res = await app.handle(new Request("http://localhost/d/com.kapeli/Python_3/latest"));
         expect(res.status).toBe(302);
-        expect(res.headers.get("location")).toMatch(/\.kapeli\.com\/feeds\/zzz\/versions\/Python\/3\.14\.3\/Python\.tgz$/);
+        expect(res.headers.get("location")).toMatch(
+            /\.kapeli\.com\/feeds\/zzz\/versions\/Python\/3\.14\.3\/Python\.tgz$/,
+        );
     });
 
     it("falls back to unversioned URL when not in catalog", async () => {

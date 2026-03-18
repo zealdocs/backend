@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { mkdirSync, writeFileSync, readFileSync, rmSync } from "node:fs";
 import { PNG } from "pngjs";
-import { readIcon, processFeeds, checkCoverage } from "./process-dash-feeds";
+import { readIcon, processFeeds } from "./process-dash-feeds";
 
 // CRC32 implementation for building test PNG chunks
 const crc32Table = (() => {
@@ -138,11 +138,12 @@ describe("processFeeds", () => {
         // Create feed XML files
         writeFileSync(
             join(feedDir, "Python.xml"),
-            `<entry><version>3.11/2</version><other-versions><version><name>3.11</name></version><version><name>3.10</name></version></other-versions></entry>`,
+            `<entry><version>3.11/2</version><other-versions><version><name>3.11</name></version><version><name>3.10</name></version><version><name>2.7</name></version></other-versions></entry>`,
         );
         writeFileSync(join(feedDir, "Ruby.xml"), `<entry><version>3.2/0</version></entry>`);
         writeFileSync(join(feedDir, "Blacklisted.xml"), `<entry><version>1.0/0</version></entry>`);
         writeFileSync(join(feedDir, "AWS_JavaScript.xml"), `<entry><version>3.0/1</version></entry>`);
+        writeFileSync(join(feedDir, "Unlisted.xml"), `<entry><version>1.0/0</version></entry>`);
     });
 
     afterAll(() => {
@@ -156,6 +157,7 @@ describe("processFeeds", () => {
         };
         await processFeeds({
             manifest,
+            blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript"],
             feedDir,
             resourceDir: join(tmpDir, "resources"),
             output: outputPath,
@@ -164,7 +166,7 @@ describe("processFeeds", () => {
         const result = JSON.parse(readFileSync(outputPath, "utf-8"));
         const python = result.find((d: { name: string }) => d.name === "Python");
         expect(python.revision).toBe("2");
-        expect(python.versions).toEqual(["3.11", "3.10"]);
+        expect(python.versions).toEqual(["3.11", "3.10", "2.7"]);
 
         const ruby = result.find((d: { name: string }) => d.name === "Ruby");
         expect(ruby.revision).toBe("0");
@@ -178,7 +180,7 @@ describe("processFeeds", () => {
         };
         await processFeeds({
             manifest,
-            blacklist: ["Blacklisted"],
+            blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript", "Ruby"],
             feedDir,
             resourceDir: join(tmpDir, "resources"),
             output: outputPath,
@@ -195,6 +197,7 @@ describe("processFeeds", () => {
         };
         await processFeeds({
             manifest,
+            blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript", "Ruby"],
             feedDir,
             resourceDir: join(tmpDir, "resources"),
             output: outputPath,
@@ -213,6 +216,7 @@ describe("processFeeds", () => {
         };
         await processFeeds({
             manifest,
+            blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript", "Ruby"],
             feedDir,
             resourceDir: join(tmpDir, "resources"),
             output: outputPath,
@@ -221,8 +225,26 @@ describe("processFeeds", () => {
         const result = JSON.parse(readFileSync(outputPath, "utf-8"));
         const py2 = result.find((d: { name: string }) => d.name === "Python_2");
         const py3 = result.find((d: { name: string }) => d.name === "Python_3");
-        expect(py2.versions).toEqual([]);
+        expect(py2.versions).toEqual(["2.7"]);
         expect(py3.versions).toEqual(["3.11", "3.10"]);
+    });
+
+    it("produces empty versions list when versionPrefix matches nothing", async () => {
+        const manifest = {
+            Python_4: { title: "Python 4", iconName: "python", source: "Python", versionPrefix: "4." },
+        };
+        await processFeeds({
+            manifest,
+            blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript", "Ruby"],
+            feedDir,
+            resourceDir: join(tmpDir, "resources"),
+            output: outputPath,
+        });
+
+        const result = JSON.parse(readFileSync(outputPath, "utf-8"));
+        const entry = result.find((d: { name: string }) => d.name === "Python_4");
+        expect(entry).toBeDefined();
+        expect(entry.versions).toEqual([]);
     });
 
     it("includes extra fields from manifest", async () => {
@@ -235,6 +257,7 @@ describe("processFeeds", () => {
         };
         await processFeeds({
             manifest,
+            blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript", "Ruby"],
             feedDir,
             resourceDir: join(tmpDir, "resources"),
             output: outputPath,
@@ -253,6 +276,7 @@ describe("processFeeds", () => {
         };
         await processFeeds({
             manifest,
+            blacklist: ["Blacklisted", "Unlisted"],
             feedDir,
             resourceDir: join(tmpDir, "resources"),
             output: outputPath,
@@ -263,13 +287,14 @@ describe("processFeeds", () => {
         expect(names).toEqual([...names].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())));
     });
 
-    it("skips entry when source XML file is missing", async () => {
+    it("skips entry when feed file does not exist on disk", async () => {
         const manifest = {
             MissingSource: { title: "Missing", iconName: "python", source: "DoesNotExist" },
             Python: { title: "Python", iconName: "python" },
         };
         await processFeeds({
             manifest,
+            blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript", "Ruby"],
             feedDir,
             resourceDir: join(tmpDir, "resources"),
             output: outputPath,
@@ -279,101 +304,82 @@ describe("processFeeds", () => {
         expect(result.find((d: { name: string }) => d.name === "MissingSource")).toBeUndefined();
         expect(result.find((d: { name: string }) => d.name === "Python")).toBeDefined();
     });
-});
 
-describe("checkCoverage", () => {
-    let tmpDir: string;
-    let feedDir: string;
+    async function captureWarnings(fn: () => Promise<void>): Promise<string[]> {
+        const warnings: string[] = [];
+        const orig = console.warn;
+        console.warn = (msg: string) => warnings.push(msg);
+        try {
+            await fn();
+        } finally {
+            console.warn = orig;
+        }
+        return warnings;
+    }
 
-    beforeAll(() => {
-        tmpDir = join(tmpdir(), `test-checkCoverage-${Date.now()}`);
-        feedDir = join(tmpDir, "feeds");
-        mkdirSync(feedDir, { recursive: true });
-
-        writeFileSync(
-            join(feedDir, "Python.xml"),
-            `<entry><version>3.11/2</version><other-versions><version><name>3.11</name></version><version><name>3.10</name></version><version><name>2.7</name></version></other-versions></entry>`,
+    it("warns about feeds not in manifest or blacklist", async () => {
+        const warnings = await captureWarnings(() =>
+            processFeeds({
+                manifest: {
+                    Python: { title: "Python", iconName: "python" },
+                    Ruby: { title: "Ruby", iconName: "ruby" },
+                },
+                blacklist: ["Blacklisted"],
+                feedDir,
+                resourceDir: join(tmpDir, "resources"),
+                output: outputPath,
+            }),
         );
-        writeFileSync(join(feedDir, "Ruby.xml"), `<entry><version>3.2/0</version></entry>`);
-        writeFileSync(join(feedDir, "Unlisted.xml"), `<entry><version>1.0/0</version></entry>`);
+        expect(warnings.some((w) => w.includes("Unlisted.xml"))).toBe(true);
+        expect(warnings.some((w) => w.includes("AWS_JavaScript.xml"))).toBe(true);
+        expect(warnings.some((w) => w.includes("Python.xml"))).toBe(false);
     });
 
-    afterAll(() => {
-        rmSync(tmpDir, { recursive: true, force: true });
-    });
-
-    it("warns about feeds not in manifest or blacklist", () => {
-        const warnings: string[] = [];
-        const orig = console.warn;
-        console.warn = (msg: string) => warnings.push(msg);
-        try {
-            checkCoverage({
+    it("does not warn about blacklisted feeds", async () => {
+        const warnings = await captureWarnings(() =>
+            processFeeds({
                 manifest: { Python: { title: "Python", iconName: "python" } },
-                blacklist: [],
+                blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript", "Ruby"],
                 feedDir,
-            });
-            expect(warnings.some((w) => w.includes("Unlisted.xml"))).toBe(true);
-            expect(warnings.some((w) => w.includes("Ruby.xml"))).toBe(true);
-            expect(warnings.some((w) => w.includes("Python.xml"))).toBe(false);
-        } finally {
-            console.warn = orig;
-        }
+                resourceDir: join(tmpDir, "resources"),
+                output: outputPath,
+            }),
+        );
+        expect(warnings.some((w) => w.includes("Blacklisted") || w.includes("Unlisted"))).toBe(false);
     });
 
-    it("does not warn when feed is in blacklist", () => {
-        const warnings: string[] = [];
-        const orig = console.warn;
-        console.warn = (msg: string) => warnings.push(msg);
-        try {
-            checkCoverage({
-                manifest: { Python: { title: "Python", iconName: "python" } },
-                blacklist: ["Ruby", "Unlisted"],
-                feedDir,
-            });
-            expect(warnings.some((w) => w.includes("Ruby.xml") || w.includes("Unlisted.xml"))).toBe(false);
-        } finally {
-            console.warn = orig;
-        }
-    });
-
-    it("warns about uncovered versions in split feeds", () => {
-        const warnings: string[] = [];
-        const orig = console.warn;
-        console.warn = (msg: string) => warnings.push(msg);
-        try {
-            checkCoverage({
+    it("warns about uncovered versions in split feeds", async () => {
+        const warnings = await captureWarnings(() =>
+            processFeeds({
                 manifest: {
                     Python_3: { title: "Python 3", iconName: "python", source: "Python", versionPrefix: "3." },
                     Ruby: { title: "Ruby", iconName: "ruby" },
-                    Unlisted: { title: "Unlisted", iconName: "unlisted" },
                 },
+                blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript"],
                 feedDir,
-            });
-            const versionWarning = warnings.find((w) => w.includes("Python.xml") && w.includes("uncovered versions"));
-            expect(versionWarning).toBeDefined();
-            expect(versionWarning).toContain("2.7");
-        } finally {
-            console.warn = orig;
-        }
+                resourceDir: join(tmpDir, "resources"),
+                output: outputPath,
+            }),
+        );
+        const versionWarning = warnings.find((w) => w.includes("Python.xml") && w.includes("uncovered versions"));
+        expect(versionWarning).toBeDefined();
+        expect(versionWarning).toContain("2.7");
     });
 
-    it("does not warn when all versions are covered", () => {
-        const warnings: string[] = [];
-        const orig = console.warn;
-        console.warn = (msg: string) => warnings.push(msg);
-        try {
-            checkCoverage({
+    it("does not warn when all versions are covered", async () => {
+        const warnings = await captureWarnings(() =>
+            processFeeds({
                 manifest: {
                     Python_2: { title: "Python 2", iconName: "python", source: "Python", versionPrefix: "2." },
                     Python_3: { title: "Python 3", iconName: "python", source: "Python", versionPrefix: "3." },
                     Ruby: { title: "Ruby", iconName: "ruby" },
-                    Unlisted: { title: "Unlisted", iconName: "unlisted" },
                 },
+                blacklist: ["Blacklisted", "Unlisted", "AWS_JavaScript"],
                 feedDir,
-            });
-            expect(warnings.some((w) => w.includes("uncovered versions"))).toBe(false);
-        } finally {
-            console.warn = orig;
-        }
+                resourceDir: join(tmpDir, "resources"),
+                output: outputPath,
+            }),
+        );
+        expect(warnings.some((w) => w.includes("uncovered versions"))).toBe(false);
     });
 });

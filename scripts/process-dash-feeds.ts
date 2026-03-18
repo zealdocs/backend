@@ -57,6 +57,32 @@ type DocsetInfo = {
     extra?: Record<string, unknown>;
 };
 
+function parseVersionList(entry: Record<string, unknown>): {
+    version: string;
+    revision: string;
+    allVersions: string[];
+} {
+    const versionStr = String(entry.version ?? "");
+    const versionParts = versionStr.split("/");
+    const version = versionParts[0];
+    const revision = versionParts.length === 2 ? versionParts[1] : "0";
+
+    const otherVersions = entry["other-versions"] as { version?: Array<{ name: unknown }> } | undefined;
+    let allVersions: string[] = [];
+    if (otherVersions?.version) {
+        // Parser is configured with isArray to always return an array here
+        allVersions = otherVersions.version.map((v) => String(v.name));
+    }
+
+    if (!allVersions.length) {
+        allVersions = version ? [version] : [];
+    } else if (version && !allVersions.includes(version)) {
+        allVersions.unshift(version);
+    }
+
+    return { version, revision, allVersions };
+}
+
 export async function processFeeds(options: {
     manifest: Record<string, ManifestEntry>;
     blacklist?: string[];
@@ -72,69 +98,95 @@ export async function processFeeds(options: {
         isArray: (_tagName, jPath) => jPath.endsWith(".other-versions.version"),
     });
 
-    const docsetList: DocsetInfo[] = [];
-
+    // Build reverse map: feedBaseName → manifest entries
+    const feedEntries = new Map<string, Array<[string, ManifestEntry]>>();
     for (const [entryName, feedManifest] of Object.entries(manifest)) {
         const feedBaseName = feedManifest.source ?? entryName;
-        const feedFile = `${feedBaseName}.xml`;
-        console.log(`\nProcessing ${entryName} (${feedFile})...`);
+        let list = feedEntries.get(feedBaseName);
+        if (!list) {
+            list = [];
+            feedEntries.set(feedBaseName, list);
+        }
+        list.push([entryName, feedManifest]);
+    }
 
-        if (blacklist.includes(entryName)) {
-            console.log(`  ! ${entryName} is blacklisted.`);
+    const docsetList: DocsetInfo[] = [];
+
+    const feedFiles = readdirSync(feedDir).filter((f) => f.endsWith(".xml"));
+
+    for (const feedFile of feedFiles) {
+        const feedBaseName = feedFile.replace(".xml", "");
+
+        if (blacklist.includes(feedBaseName)) {
+            console.log(`\nSkipping ${feedFile} (blacklisted).`);
             continue;
         }
+
+        const entries = feedEntries.get(feedBaseName);
+        if (!entries) {
+            console.warn(`\nWarning: ${feedFile} is not covered by manifest or blacklist`);
+            continue;
+        }
+
+        console.log(`\nProcessing ${feedFile}...`);
 
         let parsed: ReturnType<typeof parser.parse>;
         try {
             parsed = parser.parse(readFileSync(join(feedDir, feedFile), "utf-8"));
         } catch (e) {
-            console.error(`  ! Failed to parse XML: ${e}`);
+            const affected = entries.map(([name]) => name).join(", ");
+            console.error(`  ! Failed to parse ${feedFile}: ${e}`);
+            console.error(`  ! Skipping: ${affected}`);
             continue;
         }
+
         const rootKey = Object.keys(parsed)[0];
-        const entry = parsed[rootKey];
+        if (!rootKey) {
+            const affected = entries.map(([name]) => name).join(", ");
+            console.error(`  ! Empty or invalid XML structure in ${feedFile}`);
+            console.error(`  ! Skipping: ${affected}`);
+            continue;
+        }
+        const { revision, allVersions } = parseVersionList(parsed[rootKey]);
 
-        const versionStr = String(entry.version ?? "");
-        const versionParts = versionStr.split("/");
-        const version = versionParts[0];
-        const revision = versionParts.length === 2 ? versionParts[1] : "0";
-
-        const otherVersions = entry["other-versions"];
-        let versionList: string[] = [];
-        if (otherVersions?.version) {
-            const versions = Array.isArray(otherVersions.version) ? otherVersions.version : [otherVersions.version];
-            versionList = versions.map((v: { name: unknown }) => String(v.name));
+        // Warn about uncovered versions in split feeds
+        const splitEntries = entries.filter(([, m]) => m.versionPrefix);
+        if (splitEntries.length) {
+            const coveredVersions = new Set(
+                splitEntries.flatMap(([, { versionPrefix }]) =>
+                    versionPrefix ? allVersions.filter((v) => v.startsWith(versionPrefix)) : [],
+                ),
+            );
+            const uncovered = allVersions.filter((v) => !coveredVersions.has(v));
+            if (uncovered.length) {
+                console.warn(`\nWarning: ${feedFile} has uncovered versions: ${uncovered.join(", ")}`);
+            }
         }
 
-        if (!versionList.length) {
-            versionList = version ? [version] : [];
-        } else if (version && !versionList.includes(version)) {
-            versionList.unshift(version);
-        }
-
-        if (feedManifest.versionPrefix) {
+        for (const [entryName, feedManifest] of entries) {
             const { versionPrefix } = feedManifest;
-            versionList = versionList.filter((v) => v.startsWith(versionPrefix));
+            const versionList = versionPrefix ? allVersions.filter((v) => v.startsWith(versionPrefix)) : allVersions;
+
+            console.log(
+                `  -> ${entryName}: ${versionList.length ? versionList.join(", ") : "<none>"} (rev ${revision})`,
+            );
+
+            const docsetInfo: DocsetInfo = {
+                name: entryName,
+                title: feedManifest.title,
+                sourceId: SOURCE_ID,
+                revision,
+                versions: versionList,
+                icon: readIcon(join(iconDir, `${feedManifest.iconName}.png`)),
+                icon2x: readIcon(join(iconDir, `${feedManifest.iconName}@2x.png`)),
+            };
+
+            if (feedManifest.extra) {
+                docsetInfo.extra = feedManifest.extra;
+            }
+
+            docsetList.push(docsetInfo);
         }
-
-        console.log(`  -> Versions: ${versionList.length ? versionList.join(", ") : "<none>"}`);
-        console.log(`  -> Revision: ${revision}`);
-
-        const docsetInfo: DocsetInfo = {
-            name: entryName,
-            title: feedManifest.title,
-            sourceId: SOURCE_ID,
-            revision,
-            versions: versionList,
-            icon: readIcon(join(iconDir, `${feedManifest.iconName}.png`)),
-            icon2x: readIcon(join(iconDir, `${feedManifest.iconName}@2x.png`)),
-        };
-
-        if (feedManifest.extra) {
-            docsetInfo.extra = feedManifest.extra;
-        }
-
-        docsetList.push(docsetInfo);
     }
 
     if (!docsetList.length) {
@@ -144,86 +196,6 @@ export async function processFeeds(options: {
 
     docsetList.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
     await Bun.write(output, `${JSON.stringify(docsetList, null, 2)}\n`);
-}
-
-export function checkCoverage(options: {
-    manifest: Record<string, ManifestEntry>;
-    blacklist?: string[];
-    feedDir: string;
-}): void {
-    const { manifest, blacklist = [], feedDir } = options;
-
-    const parser = new XMLParser({
-        parseTagValue: false,
-        isArray: (_tagName, jPath) => jPath.endsWith(".other-versions.version"),
-    });
-
-    const coveredFeeds = new Set([...Object.entries(manifest).map(([name, m]) => m.source ?? name), ...blacklist]);
-    const allFeeds = readdirSync(feedDir)
-        .filter((f) => f.endsWith(".xml"))
-        .map((f) => f.replace(".xml", ""));
-
-    for (const feed of allFeeds) {
-        if (!coveredFeeds.has(feed)) {
-            console.warn(`\nWarning: ${feed}.xml is not covered by manifest or blacklist`);
-        }
-    }
-
-    const feedRawVersions = new Map<string, string[]>();
-    const feedCoveredVersions = new Map<string, Set<string>>();
-
-    for (const [entryName, feedManifest] of Object.entries(manifest)) {
-        if (!feedManifest.versionPrefix) continue;
-
-        const feedBaseName = feedManifest.source ?? entryName;
-        if (feedRawVersions.has(feedBaseName)) continue;
-
-        let parsed: ReturnType<typeof parser.parse>;
-        try {
-            parsed = parser.parse(readFileSync(join(feedDir, `${feedBaseName}.xml`), "utf-8"));
-        } catch {
-            continue;
-        }
-
-        const rootKey = Object.keys(parsed)[0];
-        const entry = parsed[rootKey];
-        const versionStr = String(entry.version ?? "");
-        const version = versionStr.split("/")[0];
-        const otherVersions = entry["other-versions"];
-        let versionList: string[] = [];
-        if (otherVersions?.version) {
-            const versions = Array.isArray(otherVersions.version) ? otherVersions.version : [otherVersions.version];
-            versionList = versions.map((v: { name: unknown }) => String(v.name));
-        }
-        if (!versionList.length) {
-            versionList = version ? [version] : [];
-        } else if (version && !versionList.includes(version)) {
-            versionList.unshift(version);
-        }
-        feedRawVersions.set(feedBaseName, versionList);
-    }
-
-    for (const [entryName, feedManifest] of Object.entries(manifest)) {
-        if (!feedManifest.versionPrefix) continue;
-        const feedBaseName = feedManifest.source ?? entryName;
-        if (!feedCoveredVersions.has(feedBaseName)) {
-            feedCoveredVersions.set(feedBaseName, new Set());
-        }
-        const rawVersions = feedRawVersions.get(feedBaseName) ?? [];
-        const { versionPrefix } = feedManifest;
-        const coveredVersions = feedCoveredVersions.get(feedBaseName);
-        for (const v of rawVersions.filter((v) => v.startsWith(versionPrefix))) {
-            coveredVersions?.add(v);
-        }
-    }
-
-    for (const [feed, rawVersions] of feedRawVersions) {
-        const covered = feedCoveredVersions.get(feed) ?? new Set();
-        const uncovered = rawVersions.filter((v) => !covered.has(v));
-        if (uncovered.length) {
-            console.warn(`\nWarning: ${feed}.xml has uncovered versions: ${uncovered.join(", ")}`);
-        }
-    }
 }
 
 if (import.meta.main) {
@@ -237,15 +209,14 @@ if (import.meta.main) {
         allowPositionals: true,
     });
 
-    const [feedDir, output] = positionals;
-
-    if (!values["resource-dir"] || !feedDir || !output) {
+    if (!values["resource-dir"] || positionals.length < 2) {
         console.error(
             "Usage: process-dash-feeds.ts --resource-dir=<dir> [--manifest=<file>] [--blacklist=<file>] <feed_dir> <output>",
         );
         process.exit(1);
     }
 
+    const [feedDir, output] = positionals;
     const manifest = JSON.parse(await Bun.file(values.manifest ?? "docsets.json").text());
     const blacklistFile = Bun.file(values.blacklist ?? "blacklist.json");
     const blacklist = (await blacklistFile.exists()) ? JSON.parse(await blacklistFile.text()) : [];
@@ -253,10 +224,8 @@ if (import.meta.main) {
     await processFeeds({
         manifest,
         blacklist,
-        resourceDir: values["resource-dir"] as string,
+        resourceDir: values["resource-dir"],
         feedDir,
         output,
     });
-
-    checkCoverage({ manifest, blacklist, feedDir });
 }
