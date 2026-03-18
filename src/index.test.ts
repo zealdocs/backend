@@ -1,5 +1,10 @@
 import { describe, it, expect } from "bun:test";
-import app from "./index";
+import { createApp } from "./index";
+
+const app = createApp([
+    { name: "Akka", versions: ["2.10.16", "2.10.15"] },
+    { name: "Python_3", versions: ["3.14.3", "3.13.7"] },
+]);
 
 describe("GET /v1/releases", () => {
     it("returns 200 JSON", async () => {
@@ -38,11 +43,17 @@ describe("GET /l/:linkId", () => {
     });
 });
 
-describe("GET /d/:sourceId/:docsetId/latest", () => {
-    it("redirects to a Kapeli mirror for known docsets", async () => {
-        const res = await app.handle(new Request("http://localhost/d/com.kapeli/Python_3/latest"));
+describe("GET /d/:sourceId/:docsetId/:version", () => {
+    it("redirects to versioned URL for latest", async () => {
+        const res = await app.handle(new Request("http://localhost/d/com.kapeli/Akka/latest"));
         expect(res.status).toBe(302);
-        expect(res.headers.get("location")).toMatch(/\.kapeli\.com\/feeds\/Python_3\.tgz$/);
+        expect(res.headers.get("location")).toMatch(/\.kapeli\.com\/feeds\/zzz\/versions\/Akka\/2\.10\.16\/Akka\.tgz$/);
+    });
+
+    it("falls back to unversioned URL when not in catalog", async () => {
+        const res = await app.handle(new Request("http://localhost/d/com.kapeli/C++/latest"));
+        expect(res.status).toBe(302);
+        expect(res.headers.get("location")).toMatch(/\.kapeli\.com\/feeds\/C\+\+\.tgz$/);
     });
 
     it("returns 404 for unknown sourceId", async () => {
@@ -55,9 +66,14 @@ describe("GET /d/:sourceId/:docsetId/latest", () => {
         expect(res.status).toBe(404);
     });
 
-    it("handles C++ docset", async () => {
-        const res = await app.handle(new Request("http://localhost/d/com.kapeli/C++/latest"));
+    it("redirects to versioned URL for specific version", async () => {
+        const res = await app.handle(new Request("http://localhost/d/com.kapeli/Akka/2.10.16"));
         expect(res.status).toBe(302);
-        expect(res.headers.get("location")).toMatch(/\.kapeli\.com\/feeds\/C\+\+\.tgz$/);
+        expect(res.headers.get("location")).toMatch(/\.kapeli\.com\/feeds\/zzz\/versions\/Akka\/2\.10\.16\/Akka\.tgz$/);
+    });
+
+    it("returns 404 for unknown docset with specific version", async () => {
+        const res = await app.handle(new Request("http://localhost/d/com.kapeli/NoSuchDocset/1.0"));
+        expect(res.status).toBe(404);
     });
 });

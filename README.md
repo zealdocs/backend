@@ -12,7 +12,7 @@ Docsets are updated daily using GitHub Actions.
 | `api.zealdocs.org` | `GET /v1/releases` | Zeal release list |
 | `api.zealdocs.org` | `GET /v1/docsets` | Docset catalog |
 | `go.zealdocs.org` | `GET /l/:linkId` | Link redirects |
-| `go.zealdocs.org` | `GET /d/:sourceId/:docsetId/latest` | Redirect to nearest Kapeli mirror |
+| `go.zealdocs.org` | `GET /d/:sourceId/:docsetId/:version` | Redirect to nearest Kapeli mirror (`latest` or specific version) |
 
 ## Development
 
