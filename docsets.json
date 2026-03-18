@@ -80,6 +80,8 @@
     "Bootstrap_2": {
         "title": "Bootstrap 2",
         "iconName": "bootstrap",
+        "source": "Bootstrap",
+        "versionPrefix": "2.",
         "extra": {
             "isJavaScriptEnabled": true
         }
@@ -87,6 +89,8 @@
     "Bootstrap_3": {
         "title": "Bootstrap 3",
         "iconName": "bootstrap",
+        "source": "Bootstrap",
+        "versionPrefix": "3.",
         "extra": {
             "isJavaScriptEnabled": true
         }
@@ -94,6 +98,8 @@
     "Bootstrap_4": {
         "title": "Bootstrap 4",
         "iconName": "bootstrap",
+        "source": "Bootstrap",
+        "versionPrefix": "4.",
         "extra": {
             "isJavaScriptEnabled": true
         }
@@ -101,6 +107,8 @@
     "Bootstrap_5": {
         "title": "Bootstrap 5",
         "iconName": "bootstrap",
+        "source": "Bootstrap",
+        "versionPrefix": "5.",
         "extra": {
             "isJavaScriptEnabled": true
         }
@@ -420,6 +428,236 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Java_EE6": {
+        "title": "Java EE6",
+        "iconName": "jee6",
+        "source": "Java",
+        "versionPrefix": "EE6",
+        "extra": {
+            "isJavaScriptEnabled": true,
+            "keywords": ["jee6", "java"]
+        }
+    },
+    "Java_EE7": {
+        "title": "Java EE7",
+        "iconName": "jee7",
+        "source": "Java",
+        "versionPrefix": "EE7",
+        "extra": {
+            "isJavaScriptEnabled": true,
+            "keywords": ["jee7", "java"]
+        }
+    },
+    "Java_EE8": {
+        "title": "Java EE8",
+        "iconName": "jee8",
+        "source": "Java",
+        "versionPrefix": "EE8",
+        "extra": {
+            "isJavaScriptEnabled": true,
+            "keywords": ["jee8", "java"]
+        }
+    },
+    "Java_SE6": {
+        "title": "Java SE6",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE6",
+        "extra": {
+            "keywords": ["java6", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE7": {
+        "title": "Java SE7",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE7",
+        "extra": {
+            "keywords": ["java7", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE8": {
+        "title": "Java SE8",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE8",
+        "extra": {
+            "keywords": ["java8", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE9": {
+        "title": "Java SE9",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE9",
+        "extra": {
+            "keywords": ["java9", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE10": {
+        "title": "Java SE10",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE10",
+        "extra": {
+            "keywords": ["java10", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE11": {
+        "title": "Java SE11",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE11",
+        "extra": {
+            "keywords": ["java11", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE12": {
+        "title": "Java SE12",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE12",
+        "extra": {
+            "keywords": ["java12", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE13": {
+        "title": "Java SE13",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE13",
+        "extra": {
+            "keywords": ["java13", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE14": {
+        "title": "Java SE14",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE14",
+        "extra": {
+            "keywords": ["java14", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE15": {
+        "title": "Java SE15",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE15",
+        "extra": {
+            "keywords": ["java15", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE16": {
+        "title": "Java SE16",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE16",
+        "extra": {
+            "keywords": ["java16", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE17": {
+        "title": "Java SE17",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE17",
+        "extra": {
+            "keywords": ["java17", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE18": {
+        "title": "Java SE18",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE18",
+        "extra": {
+            "keywords": ["java18", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE19": {
+        "title": "Java SE19",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE19",
+        "extra": {
+            "keywords": ["java19", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE20": {
+        "title": "Java SE20",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE20",
+        "extra": {
+            "keywords": ["java20", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE21": {
+        "title": "Java SE21",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE21",
+        "extra": {
+            "keywords": ["java21", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE22": {
+        "title": "Java SE22",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE22",
+        "extra": {
+            "keywords": ["java22", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE23": {
+        "title": "Java SE23",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE23",
+        "extra": {
+            "keywords": ["java23", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE24": {
+        "title": "Java SE24",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE24",
+        "extra": {
+            "keywords": ["java24", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Java_SE25": {
+        "title": "Java SE25",
+        "iconName": "java",
+        "source": "Java",
+        "versionPrefix": "SE25",
+        "extra": {
+            "keywords": ["java25", "java"],
+            "isJavaScriptEnabled": true
+        }
+    },
     "Jekyll": {
         "title": "Jekyll",
         "iconName": "jekyll"
@@ -475,6 +713,8 @@
     "Lua_5.1": {
         "title": "Lua 5.1",
         "iconName": "lua",
+        "source": "Lua",
+        "versionPrefix": "5.1",
         "extra": {
             "indexFilePath": "www.lua.org/manual/5.1/index.html"
         }
@@ -482,6 +722,8 @@
     "Lua_5.2": {
         "title": "Lua 5.2",
         "iconName": "lua",
+        "source": "Lua",
+        "versionPrefix": "5.2",
         "extra": {
             "indexFilePath": "www.lua.org/manual/5.2/index.html"
         }
@@ -489,6 +731,8 @@
     "Lua_5.3": {
         "title": "Lua 5.3",
         "iconName": "lua",
+        "source": "Lua",
+        "versionPrefix": "5.3",
         "extra": {
             "indexFilePath": "www.lua.org/manual/5.3/index.html"
         }
@@ -496,8 +740,19 @@
     "Lua_5.4": {
         "title": "Lua 5.4",
         "iconName": "lua",
+        "source": "Lua",
+        "versionPrefix": "5.4",
         "extra": {
             "indexFilePath": "www.lua.org/manual/5.4/index.html"
+        }
+    },
+    "Lua_5.5": {
+        "title": "Lua 5.5",
+        "iconName": "lua",
+        "source": "Lua",
+        "versionPrefix": "5.5",
+        "extra": {
+            "indexFilePath": "www.lua.org/manual/5.5/index.html"
         }
     },
     "MarionetteJS": {
@@ -572,15 +827,21 @@
     },
     "OpenGL_2": {
         "title": "OpenGL 2",
-        "iconName": "gl2"
+        "iconName": "gl2",
+        "source": "OpenGL",
+        "versionPrefix": "2"
     },
     "OpenGL_3": {
         "title": "OpenGL 3",
-        "iconName": "gl3"
+        "iconName": "gl3",
+        "source": "OpenGL",
+        "versionPrefix": "3"
     },
     "OpenGL_4": {
         "title": "OpenGL 4",
-        "iconName": "gl4"
+        "iconName": "gl4",
+        "source": "OpenGL",
+        "versionPrefix": "4"
     },
     "PHP": {
         "title": "PHP",
@@ -665,6 +926,8 @@
     "Python_2": {
         "title": "Python 2",
         "iconName": "python",
+        "source": "Python",
+        "versionPrefix": "2.",
         "extra": {
             "keywords": ["python2", "python"]
         }
@@ -672,6 +935,8 @@
     "Python_3": {
         "title": "Python 3",
         "iconName": "python",
+        "source": "Python",
+        "versionPrefix": "3.",
         "extra": {
             "keywords": ["python3", "python"]
         }
@@ -679,6 +944,8 @@
     "Qt_4": {
         "title": "Qt 4",
         "iconName": "qt",
+        "source": "Qt",
+        "versionPrefix": "4.",
         "extra": {
             "indexFilePath": "html/index.html",
             "keywords": ["qt4", "qt"]
@@ -687,6 +954,8 @@
     "Qt_5": {
         "title": "Qt 5",
         "iconName": "qt",
+        "source": "Qt",
+        "versionPrefix": "5.",
         "extra": {
             "keywords": ["qt5", "qt"]
         }
@@ -694,6 +963,8 @@
     "Qt_6": {
         "title": "Qt 6",
         "iconName": "qt",
+        "source": "Qt",
+        "versionPrefix": "6.",
         "extra": {
             "keywords": ["qt6", "qt"]
         }
@@ -728,9 +999,21 @@
             "isJavaScriptEnabled": true
         }
     },
+    "Ruby_1": {
+        "title": "Ruby 1",
+        "iconName": "ruby",
+        "source": "Ruby",
+        "versionPrefix": "1.",
+        "extra": {
+            "keywords": ["ruby1", "ruby"],
+            "isJavaScriptEnabled": true
+        }
+    },
     "Ruby_2": {
         "title": "Ruby 2",
         "iconName": "ruby",
+        "source": "Ruby",
+        "versionPrefix": "2.",
         "extra": {
             "keywords": ["ruby2", "ruby"],
             "isJavaScriptEnabled": true
@@ -739,14 +1022,28 @@
     "Ruby_3": {
         "title": "Ruby 3",
         "iconName": "ruby",
+        "source": "Ruby",
+        "versionPrefix": "3.",
         "extra": {
             "keywords": ["ruby3", "ruby"],
+            "isJavaScriptEnabled": true
+        }
+    },
+    "Ruby_4": {
+        "title": "Ruby 4",
+        "iconName": "ruby",
+        "source": "Ruby",
+        "versionPrefix": "4.",
+        "extra": {
+            "keywords": ["ruby4", "ruby"],
             "isJavaScriptEnabled": true
         }
     },
     "Ruby_on_Rails_3": {
         "title": "Ruby on Rails 3",
         "iconName": "rails",
+        "source": "Ruby_on_Rails",
+        "versionPrefix": "3.",
         "extra": {
             "keywords": ["ror3", "ror"],
             "isJavaScriptEnabled": true
@@ -755,6 +1052,8 @@
     "Ruby_on_Rails_4": {
         "title": "Ruby on Rails 4",
         "iconName": "rails",
+        "source": "Ruby_on_Rails",
+        "versionPrefix": "4.",
         "extra": {
             "keywords": ["ror4", "ror"],
             "isJavaScriptEnabled": true
@@ -763,6 +1062,8 @@
     "Ruby_on_Rails_5": {
         "title": "Ruby on Rails 5",
         "iconName": "rails",
+        "source": "Ruby_on_Rails",
+        "versionPrefix": "5.",
         "extra": {
             "keywords": ["ror5", "ror"],
             "isJavaScriptEnabled": true
@@ -771,6 +1072,8 @@
     "Ruby_on_Rails_6": {
         "title": "Ruby on Rails 6",
         "iconName": "rails",
+        "source": "Ruby_on_Rails",
+        "versionPrefix": "6.",
         "extra": {
             "keywords": ["ror6", "ror"],
             "isJavaScriptEnabled": true
@@ -779,6 +1082,8 @@
     "Ruby_on_Rails_7": {
         "title": "Ruby on Rails 7",
         "iconName": "rails",
+        "source": "Ruby_on_Rails",
+        "versionPrefix": "7.",
         "extra": {
             "keywords": ["ror7", "ror"],
             "isJavaScriptEnabled": true
@@ -787,6 +1092,8 @@
     "Ruby_on_Rails_8": {
         "title": "Ruby on Rails 8",
         "iconName": "rails",
+        "source": "Ruby_on_Rails",
+        "versionPrefix": "8.",
         "extra": {
             "keywords": ["ror8", "ror"],
             "isJavaScriptEnabled": true
@@ -995,6 +1302,8 @@
     "Zend_Framework_1": {
         "title": "Zend Framework 1",
         "iconName": "zend",
+        "source": "Zend_Framework",
+        "versionPrefix": "1.",
         "extra": {
             "isJavaScriptEnabled": true
         }
@@ -1002,6 +1311,8 @@
     "Zend_Framework_2": {
         "title": "Zend Framework 2",
         "iconName": "zend",
+        "source": "Zend_Framework",
+        "versionPrefix": "2.",
         "extra": {
             "isJavaScriptEnabled": true
         }
@@ -1009,6 +1320,8 @@
     "Zend_Framework_3": {
         "title": "Zend Framework 3",
         "iconName": "zend",
+        "source": "Zend_Framework",
+        "versionPrefix": "3.",
         "extra": {
             "isJavaScriptEnabled": true
         }
