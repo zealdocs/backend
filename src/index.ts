@@ -7,8 +7,6 @@ import { fileURLToPath } from "node:url";
 import { getMirror } from "./geo";
 import { linkMap } from "./links";
 import docsets from "../docsets.json";
-import releasesData from "../public/_api/v1/releases.json";
-
 type LegacyEntry = { name: string; versions: string[] };
 type FullEntry = {
     name: string;
@@ -32,9 +30,12 @@ function tryReadJson<T>(filename: string): T[] {
     }
 }
 
+type ReleaseEntry = { version: string; date: string };
+
 export function createApp(
     legacyCatalog: LegacyEntry[] = tryReadJson<LegacyEntry>("docsets.json"),
     fullCatalog: FullEntry[] = tryReadJson<FullEntry>("catalog.json"),
+    releases: ReleaseEntry[] = tryReadJson<ReleaseEntry>("releases.json"),
 ) {
     const legacyFirstVersion = new Map<string, string>(
         legacyCatalog.filter((d) => d.versions.length > 0).map((d) => [d.name, d.versions[0]]),
@@ -79,7 +80,7 @@ export function createApp(
         new Elysia()
             .get("/", ({ redirect }) => redirect("https://zealdocs.org", 302))
             .get("/v1/releases", () =>
-                Response.json(releasesData, { headers: { "Cache-Control": "public, s-maxage=3600" } }),
+                Response.json(releases, { headers: { "Cache-Control": "public, s-maxage=3600" } }),
             )
             .get("/v1/docsets", () =>
                 Response.json(legacyCatalog, { headers: { "Cache-Control": "public, s-maxage=3600" } }),

@@ -2,6 +2,7 @@ import { parseArgs } from "node:util";
 import { processFeeds } from "./process-dash-feeds";
 import { processContrib } from "./process-contrib";
 import { processCheatsheets } from "./process-cheatsheets";
+import { fetchReleases } from "./fetch-releases";
 
 const { values } = parseArgs({
     args: Bun.argv.slice(2),
@@ -61,11 +62,22 @@ legacyEntries.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCa
 const catalogEntries = [...officialEntries, ...contribEntries, ...cheatsheetEntries];
 catalogEntries.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
+console.log("\nFetching Zeal releases from GitHub...");
+let releases: Awaited<ReturnType<typeof fetchReleases>> = [];
+try {
+    releases = await fetchReleases();
+    console.log(`  ${releases.length} releases fetched.`);
+} catch (err) {
+    console.warn(`  Warning: failed to fetch releases: ${err}`);
+}
+
 await Promise.all([
     Bun.write("public/_api/v1/docsets.json", `${JSON.stringify(legacyEntries, null, 2)}\n`),
     Bun.write("public/_api/v1/catalog.json", `${JSON.stringify(catalogEntries, null, 2)}\n`),
+    Bun.write("public/_api/v1/releases.json", `${JSON.stringify(releases, null, 2)}\n`),
 ]);
 
 console.log("\nBuild complete!");
 console.log(`  docsets.json: ${legacyEntries.length} entries (com.kapeli legacy)`);
 console.log(`  catalog.json: ${catalogEntries.length} entries (3 sources combined)`);
+console.log(`  releases.json: ${releases.length} releases`);
