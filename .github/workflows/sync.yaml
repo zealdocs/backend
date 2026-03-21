@@ -25,18 +25,13 @@ jobs:
         with:
           bun-version: "1"
 
+      - name: Install Dependencies
+        run: bun install
+
       - name: Clone Dash Repositories
         run: |
           git clone https://github.com/Kapeli/feeds.git build/feeds
           git clone https://github.com/Kapeli/Dash-X-Platform-Resources.git build/resources
-
-      - name: Execute
-        run: |
-          bun install
-          bun run process-feeds \
-            --resource-dir=build/resources \
-            build/feeds \
-            public/_api/v1/docsets.json
 
       - name: Deploy to Vercel
         run: |

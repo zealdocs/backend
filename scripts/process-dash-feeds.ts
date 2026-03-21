@@ -1,43 +1,10 @@
 import { parseArgs } from "node:util";
 import { join } from "node:path";
-import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { XMLParser } from "fast-xml-parser";
+import { readIcon } from "./png-utils";
 
 const SOURCE_ID = "com.kapeli.dash";
-
-const PNG_CHUNK_WHITELIST = new Set(["IHDR", "PLTE", "IDAT", "IEND", "tRNS"]);
-const PNG_SIGNATURE = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
-
-export function readIcon(filename: string): string {
-    if (!existsSync(filename)) {
-        throw new Error(`Cannot find file: ${filename}`);
-    }
-
-    const data = readFileSync(filename);
-
-    if (data.length < 8 || !data.subarray(0, 8).equals(PNG_SIGNATURE)) {
-        throw new Error(`Not a valid PNG file: ${filename}`);
-    }
-
-    const chunks: Buffer[] = [PNG_SIGNATURE];
-    let offset = 8;
-
-    while (offset < data.length) {
-        if (offset + 12 > data.length) break;
-        const length = data.readUInt32BE(offset);
-        const type = data.subarray(offset + 4, offset + 8).toString("ascii");
-        const chunkTotal = 12 + length;
-        if (offset + chunkTotal > data.length) break;
-
-        if (PNG_CHUNK_WHITELIST.has(type)) {
-            chunks.push(data.subarray(offset, offset + chunkTotal));
-        }
-
-        offset += chunkTotal;
-    }
-
-    return Buffer.concat(chunks).toString("base64");
-}
 
 type ManifestEntry = {
     title: string;
@@ -47,7 +14,7 @@ type ManifestEntry = {
     extra?: Record<string, unknown>;
 };
 
-type DocsetInfo = {
+export type DocsetInfo = {
     name: string;
     title: string;
     sourceId: string;
@@ -89,14 +56,15 @@ export async function processFeeds(options: {
     blacklist?: string[];
     resourceDir: string;
     feedDir: string;
-    output: string;
-}): Promise<void> {
-    const { manifest, blacklist = [], resourceDir, feedDir, output } = options;
+}): Promise<DocsetInfo[]> {
+    const { manifest, blacklist = [], resourceDir, feedDir } = options;
     const iconDir = join(resourceDir, "docset_icons");
 
     const parser = new XMLParser({
         parseTagValue: false,
-        isArray: (_tagName, jPath) => jPath.endsWith(".other-versions.version"),
+        processEntities: false,
+        isArray: (_tagName: string, jPath: unknown) =>
+            typeof jPath === "string" && jPath.endsWith(".other-versions.version"),
     });
 
     // Build reverse map: feedBaseName → manifest entries
@@ -192,11 +160,11 @@ export async function processFeeds(options: {
 
     if (!docsetList.length) {
         console.warn("Warning: No docsets were processed.");
-        return;
+        return docsetList;
     }
 
     docsetList.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
-    await Bun.write(output, `${JSON.stringify(docsetList, null, 2)}\n`);
+    return docsetList;
 }
 
 if (import.meta.main) {
@@ -222,11 +190,13 @@ if (import.meta.main) {
     const blacklistFile = Bun.file(values.blacklist ?? "blacklist.json");
     const blacklist = (await blacklistFile.exists()) ? JSON.parse(await blacklistFile.text()) : [];
 
-    await processFeeds({
+    const entries = await processFeeds({
         manifest,
         blacklist,
-        resourceDir: values["resource-dir"],
+        resourceDir: values["resource-dir"] as string,
         feedDir,
-        output,
     });
+    if (entries.length) {
+        await Bun.write(output, `${JSON.stringify(entries, null, 2)}\n`);
+    }
 }

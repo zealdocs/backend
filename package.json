@@ -6,7 +6,7 @@
         "dev": "bun run --hot src/index.ts",
         "start": "bun run src/index.ts",
         "test": "bun test",
-        "process-feeds": "bun run scripts/process-dash-feeds.ts",
+        "build": "bun run scripts/build-catalog.ts --resource-dir=build/resources --feed-dir=build/feeds",
         "typecheck": "tsc --noEmit",
         "lint": "biome lint .",
         "lint:fix": "biome lint --write .",
@@ -16,13 +16,13 @@
     "dependencies": {
         "@vercel/functions": "^3.4.3",
         "elysia": "^1.4.28",
-        "fast-xml-parser": "^5.5.6",
-        "pngjs": "^7.0.0"
+        "fast-xml-parser": "^5.5.6"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.7",
         "@types/pngjs": "^6.0.5",
         "bun-types": "^1.3.10",
+        "pngjs": "^7.0.0",
         "typescript": "^5.9.3"
     }
 }
