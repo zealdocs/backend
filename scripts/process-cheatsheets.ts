@@ -11,6 +11,8 @@ export type CheatsheetDocsetInfo = {
     versions: string[];
     icon: string;
     icon2x: string;
+    size?: number;
+    tarix?: boolean;
 };
 
 type CheatsheetApiEntry = {

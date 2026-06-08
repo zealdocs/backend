@@ -12,6 +12,8 @@ export type ContribDocsetInfo = {
     icon2x: string;
     archive: string;
     specificVersions: Record<string, string>;
+    size?: number;
+    tarix?: boolean;
 };
 
 type ContribApiEntry = {

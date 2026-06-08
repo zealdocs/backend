@@ -5,6 +5,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { getMirror } from "./geo";
+import { dashFeedName, dashArchiveUrl, contribArchiveUrl, cheatsheetArchiveUrl } from "./mirror-url";
 import { linkMap } from "./links";
 import { track } from "./track";
 import docsets from "../docsets.json";
@@ -69,21 +70,21 @@ export function createApp(
         firstVersion: Map<string, string>,
         mirror: string,
     ): string | null {
-        if (!Object.hasOwn(manifest, docsetId)) return null;
-        const feedName = manifest[docsetId].source ?? docsetId;
+        const feedName = dashFeedName(docsetId, manifest);
+        if (!feedName) return null;
         const resolvedVersion = version === "latest" ? firstVersion.get(docsetId) : version;
-        return resolvedVersion
-            ? `https://${mirror}/feeds/zzz/versions/${feedName}/${resolvedVersion}/${feedName}.tgz`
-            : `https://${mirror}/feeds/${feedName}.tgz`;
+        return dashArchiveUrl(feedName, resolvedVersion, mirror);
     }
 
     return (
         new Elysia()
             .get("/", ({ redirect }) => redirect("https://zealdocs.org", 302))
-            .get("/robots.txt", () =>
-                new Response("User-agent: *\nDisallow: /\n", {
-                    headers: { "content-type": "text/plain", "cache-control": "public, max-age=86400" },
-                }),
+            .get(
+                "/robots.txt",
+                () =>
+                    new Response("User-agent: *\nDisallow: /\n", {
+                        headers: { "content-type": "text/plain", "cache-control": "public, max-age=86400" },
+                    }),
             )
             .get("/favicon.ico", () => new Response(null, { status: 204 }))
             .get("/v1/releases", ({ request }) => {
@@ -145,7 +146,7 @@ export function createApp(
                             return "Not found";
                         }
                         trackDownload("com.kapeli.cheatsheet", key);
-                        return redirect(`https://${mirror}/feeds/zzz/cheatsheets/${key}.tgz`, 302);
+                        return redirect(cheatsheetArchiveUrl(key, mirror), 302);
                     }
 
                     if (docsetId.endsWith("_Contrib")) {
@@ -160,7 +161,7 @@ export function createApp(
                                 ? entry.specificVersions[version]
                                 : entry.archive;
                         trackDownload("com.kapeli.contrib", key);
-                        return redirect(`https://${mirror}/feeds/zzz/user_contributed/build/${key}/${archive}`, 302);
+                        return redirect(contribArchiveUrl(key, archive, mirror), 302);
                     }
 
                     // Official Dash docset

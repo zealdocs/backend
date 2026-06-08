@@ -23,6 +23,8 @@ export type DocsetInfo = {
     icon: string;
     icon2x: string;
     extra?: Record<string, unknown>;
+    size?: number;
+    tarix?: boolean;
 };
 
 function parseVersionList(entry: Record<string, unknown>): {

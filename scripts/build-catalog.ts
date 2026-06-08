@@ -3,6 +3,10 @@ import { processFeeds } from "./process-dash-feeds";
 import { processContrib } from "./process-contrib";
 import { processCheatsheets } from "./process-cheatsheets";
 import { fetchReleases } from "./fetch-releases";
+import { diffCatalog, fetchBaseline, type DiffableEntry } from "./catalog-diff";
+import { enrichMetadata } from "./probe-metadata";
+
+const DEFAULT_BASELINE_URL = "https://api.zealdocs.org/_api/v1/catalog.json";
 
 const { values } = parseArgs({
     args: Bun.argv.slice(2),
@@ -11,6 +15,8 @@ const { values } = parseArgs({
         blacklist: { type: "string", default: "blacklist.json" },
         "resource-dir": { type: "string" },
         "feed-dir": { type: "string" },
+        // Previously-deployed catalog used as a diff baseline. Pass "" to skip.
+        baseline: { type: "string", default: DEFAULT_BASELINE_URL },
     },
     allowPositionals: false,
 });
@@ -40,7 +46,49 @@ console.log("\nProcessing cheatsheets...");
 const cheatsheetEntries = await processCheatsheets({ resourceDir });
 console.log(`  ${cheatsheetEntries.length} cheatsheets fetched.`);
 
-// Build com.kapeli legacy merged catalog (official + suffixed contrib + suffixed cheatsheet)
+// Full catalog (3 individual sources flat-merged). These objects are enriched
+// in place below, before the legacy catalog copies them, so both outputs carry
+// the size/tarix metadata.
+const catalogEntries = [...officialEntries, ...contribEntries, ...cheatsheetEntries];
+
+// Diff against the previously-deployed catalog so unchanged docsets reuse their
+// metadata instead of being re-probed.
+let baseline: DiffableEntry[] = [];
+if (values.baseline) {
+    try {
+        baseline = await fetchBaseline(values.baseline);
+    } catch (err) {
+        console.warn(`\nWarning: baseline unavailable, probing all docsets: ${err}`);
+    }
+} else {
+    console.log("\nBaseline disabled; probing all docsets.");
+}
+
+const diff = diffCatalog(catalogEntries, baseline);
+console.log(
+    `\nCatalog diff: ${diff.unchanged.length} unchanged, ${diff.changed.length} changed, ` +
+        `${diff.added.length} added, ${diff.removed.length} removed`,
+);
+if (diff.changed.length) console.log(`  changed: ${diff.changed.join(", ")}`);
+if (diff.added.length) console.log(`  added: ${diff.added.join(", ")}`);
+if (diff.removed.length) console.log(`  removed: ${diff.removed.join(", ")}`);
+
+console.log("\nProbing download sizes and tarix availability...");
+let meta = { reused: 0, probed: 0, failed: 0, skipped: 0 };
+try {
+    meta = await enrichMetadata({ entries: catalogEntries, diff, baseline, manifest });
+} catch (err) {
+    console.warn(`  Warning: metadata probing failed: ${err}`);
+}
+console.log(
+    `  ${meta.reused} reused, ${meta.probed} probed, ${meta.failed} failed` +
+        (meta.skipped ? `, ${meta.skipped} skipped` : ""),
+);
+
+catalogEntries.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+
+// Legacy merged catalog (official + suffixed contrib + suffixed cheatsheet),
+// derived after enrichment so the copies inherit size/tarix.
 const legacyEntries = [
     ...officialEntries.map((e) => ({ ...e, sourceId: "com.kapeli" })),
     ...contribEntries.map((e) => ({
@@ -57,10 +105,6 @@ const legacyEntries = [
     })),
 ];
 legacyEntries.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
-
-// Build full catalog (3 individual sources flat-merged)
-const catalogEntries = [...officialEntries, ...contribEntries, ...cheatsheetEntries];
-catalogEntries.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
 console.log("\nFetching Zeal releases from GitHub...");
 let releases: Awaited<ReturnType<typeof fetchReleases>> = [];
