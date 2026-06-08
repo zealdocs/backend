@@ -16,6 +16,7 @@ type FullEntry = {
     versions: string[];
     archive?: string;
     specificVersions?: Record<string, string>;
+    bareLatest?: boolean;
 };
 
 const dataDir = join(dirname(fileURLToPath(import.meta.url)), "../public/_api/v1");
@@ -62,6 +63,12 @@ export function createApp(
         fullCatalog.filter((d) => d.sourceId === "com.kapeli.cheatsheet").map((d) => d.name),
     );
 
+    // Dash docsets whose latest lives at the bare feed path, not a versioned one
+    // (the feed advertises a version Kapeli never published a versioned artifact for).
+    const dashBareLatest = new Set<string>(
+        fullCatalog.filter((d) => d.sourceId === "com.kapeli.dash" && d.bareLatest).map((d) => d.name),
+    );
+
     const manifest = docsets as Record<string, { source?: string }>;
 
     function buildDashRedirectUrl(
@@ -72,7 +79,8 @@ export function createApp(
     ): string | null {
         const feedName = dashFeedName(docsetId, manifest);
         if (!feedName) return null;
-        const resolvedVersion = version === "latest" ? firstVersion.get(docsetId) : version;
+        const resolvedVersion =
+            version === "latest" ? (dashBareLatest.has(docsetId) ? undefined : firstVersion.get(docsetId)) : version;
         return dashArchiveUrl(feedName, resolvedVersion, mirror);
     }
 

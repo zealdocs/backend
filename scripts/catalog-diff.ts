@@ -13,6 +13,7 @@ export type DiffableEntry = {
     specificVersions?: Record<string, string>;
     size?: number;
     tarix?: boolean;
+    bareLatest?: boolean;
 };
 
 export function entryKey(e: { sourceId: string; name: string }): string {
@@ -88,12 +89,13 @@ export async function fetchBaseline(url: string): Promise<DiffableEntry[]> {
     }
     return (data as DiffableEntry[]).flatMap((e) => {
         if (!e || typeof e.name !== "string" || typeof e.sourceId !== "string") return [];
-        // `size`/`tarix` are reused verbatim into output, so reject bad types.
+        // `size`/`tarix`/`bareLatest` are reused verbatim into output, so reject bad types.
         return [
             {
                 ...e,
                 size: typeof e.size === "number" && Number.isFinite(e.size) && e.size >= 0 ? e.size : undefined,
                 tarix: typeof e.tarix === "boolean" ? e.tarix : undefined,
+                bareLatest: typeof e.bareLatest === "boolean" ? e.bareLatest : undefined,
             },
         ];
     });

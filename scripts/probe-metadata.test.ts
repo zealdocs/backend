@@ -73,6 +73,50 @@ describe("enrichMetadata", () => {
         expect(stats).toEqual({ reused: 0, probed: 1, failed: 0, skipped: 0 });
     });
 
+    it("falls back to the bare path when a dash versioned artifact is missing", async () => {
+        // Versioned URL 404s (default); only the bare feed file and its tarix exist.
+        const m = { ActionScript: {} };
+        responses.set("https://m.test/feeds/ActionScript.tgz", { status: 200, len: "600" });
+        responses.set("https://m.test/feeds/ActionScript.tgz.tarix", { status: 200, len: "20" });
+        const entries: EnrichableEntry[] = [{ name: "ActionScript", sourceId: "com.kapeli.dash", versions: ["3"] }];
+        const diff = { ...emptyDiff(), changed: ["com.kapeli.dash/ActionScript"] };
+
+        const stats = await enrichMetadata({ entries, diff, baseline: [], manifest: m, mirror: MIRROR });
+
+        expect(entries[0].size).toBe(620);
+        expect(entries[0].tarix).toBe(true);
+        expect(entries[0].bareLatest).toBe(true);
+        expect(stats.probed).toBe(1);
+    });
+
+    it("does not fall back to bare on a transient versioned error", async () => {
+        // Versioned HEAD errors transiently (not a definitive 404); bare exists.
+        // Must stay unset for re-probe, not switch to bare.
+        const m = { ActionScript: {} };
+        throwUrls.add("https://m.test/feeds/zzz/versions/ActionScript/3/ActionScript.tgz");
+        responses.set("https://m.test/feeds/ActionScript.tgz", { status: 200, len: "600" });
+        responses.set("https://m.test/feeds/ActionScript.tgz.tarix", { status: 200, len: "20" });
+        const entries: EnrichableEntry[] = [{ name: "ActionScript", sourceId: "com.kapeli.dash", versions: ["3"] }];
+        const diff = { ...emptyDiff(), changed: ["com.kapeli.dash/ActionScript"] };
+
+        const stats = await enrichMetadata({ entries, diff, baseline: [], manifest: m, mirror: MIRROR, timeoutMs: 50 });
+
+        expect(entries[0].bareLatest).toBeUndefined();
+        expect(entries[0].size).toBeUndefined();
+        expect(stats.failed).toBe(1);
+    });
+
+    it("does not set bareLatest when the versioned artifact resolves normally", async () => {
+        responses.set("https://m.test/feeds/zzz/versions/Go/1.0/Go.tgz", { status: 200, len: "1000" });
+        responses.set("https://m.test/feeds/zzz/versions/Go/1.0/Go.tgz.tarix", { status: 200, len: "50" });
+        const entries: EnrichableEntry[] = [{ name: "Go", sourceId: "com.kapeli.dash", versions: ["1.0"] }];
+        const diff = { ...emptyDiff(), changed: ["com.kapeli.dash/Go"] };
+
+        await enrichMetadata({ entries, diff, baseline: [], manifest, mirror: MIRROR });
+
+        expect(entries[0].bareLatest).toBeUndefined();
+    });
+
     it("dash docset without a tarix index records tarix=false, size=archive", async () => {
         responses.set("https://m.test/feeds/zzz/versions/Go/1.0/Go.tgz", { status: 200, len: "1000" });
         responses.set("https://m.test/feeds/zzz/versions/Go/1.0/Go.tgz.tarix", { status: 302 });

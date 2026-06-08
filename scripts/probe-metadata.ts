@@ -17,6 +17,7 @@ export type EnrichableEntry = {
     archive?: string;
     size?: number;
     tarix?: boolean;
+    bareLatest?: boolean;
 };
 
 /** Mirror URL of the archive a `/d/<source>/<name>/latest` request resolves to. */
@@ -33,6 +34,13 @@ export function archiveUrl(entry: EnrichableEntry, mirror: string, manifest: Doc
         default:
             return null;
     }
+}
+
+/** Bare (unversioned) archive URL for a dash docset, or null for other sources. */
+function dashBareUrl(entry: EnrichableEntry, mirror: string, manifest: DocsetManifest): string | null {
+    if (entry.sourceId !== "com.kapeli.dash") return null;
+    const feedName = dashFeedName(entry.name, manifest);
+    return feedName ? dashArchiveUrl(feedName, undefined, mirror) : null;
 }
 
 /**
@@ -115,6 +123,7 @@ export async function enrichMetadata(options: {
         if (base && base.size !== undefined && base.tarix !== undefined) {
             entry.size = base.size;
             entry.tarix = base.tarix;
+            if (base.bareLatest) entry.bareLatest = true;
             reused++;
         } else {
             toProbe.push(entry);
@@ -131,7 +140,23 @@ export async function enrichMetadata(options: {
                 skipped++;
                 return;
             }
-            const archive = await head(url, timeoutMs);
+            let archive = await head(url, timeoutMs);
+            let probeUrl = url;
+            let bareLatest = false;
+            if (archive.kind === "absent") {
+                // A dash docset may advertise a version with no versioned artifact
+                // (only the bare feed file exists). Fall back to the bare path —
+                // only on a definitive miss, never on a transient probe error.
+                const bare = dashBareUrl(entry, mirror, manifest);
+                if (bare && bare !== url) {
+                    const bareHead = await head(bare, timeoutMs);
+                    if (bareHead.kind === "ok") {
+                        archive = bareHead;
+                        probeUrl = bare;
+                        bareLatest = true;
+                    }
+                }
+            }
             if (archive.kind !== "ok" || archive.size === null) {
                 failed++;
                 return;
@@ -141,11 +166,12 @@ export async function enrichMetadata(options: {
             if (!sourceHasTarix(entry.sourceId)) {
                 entry.size = archive.size;
                 entry.tarix = false;
+                if (bareLatest) entry.bareLatest = true;
                 probed++;
                 return;
             }
 
-            const tarix = await head(tarixUrl(url), timeoutMs);
+            const tarix = await head(tarixUrl(probeUrl), timeoutMs);
             if (tarix.kind === "error") {
                 // Unknown tarix state: leave unset so the next build re-probes.
                 failed++;
@@ -153,6 +179,7 @@ export async function enrichMetadata(options: {
             }
             entry.size = archive.size + (tarix.kind === "ok" ? (tarix.size ?? 0) : 0);
             entry.tarix = tarix.kind === "ok";
+            if (bareLatest) entry.bareLatest = true;
             probed++;
         } catch {
             failed++;

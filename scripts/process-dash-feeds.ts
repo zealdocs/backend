@@ -25,6 +25,7 @@ export type DocsetInfo = {
     extra?: Record<string, unknown>;
     size?: number;
     tarix?: boolean;
+    bareLatest?: boolean;
 };
 
 function parseVersionList(entry: Record<string, unknown>): {
